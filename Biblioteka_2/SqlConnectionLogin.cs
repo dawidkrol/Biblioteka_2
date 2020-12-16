@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Biblioteka_2
 {
-    public class SqlLogin
+    public class SqlConnectionLogin
     {
-        public bool Login(string ip,string databaseName,string userName,string password,out UserProfile user)
+        public bool Login(string ip, string databaseName, string userName, string password, out SqlProfile user)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = ip;
@@ -16,12 +16,11 @@ namespace Biblioteka_2
             builder.UserID = userName;
 
             using (SqlConnection cnn = new SqlConnection(builder.ToString()))
-            //using (SqlCommand commandDatabase = new SqlCommand(sql, cnn))
             {
                 try
                 {
                     cnn.Open();
-                    UserProfile profile = new UserProfile(userName, password, databaseName, ip);
+                    SqlProfile profile = new SqlProfile(userName, password, databaseName, ip);
                     user = profile;
                     return true;
                 }

@@ -8,18 +8,14 @@
         Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="20" Grid.Row="0" x:Name="main" Text="Podaj dane do połączenia z serwerem sql"></TextBlock>
-        <TextBox Grid.Row="1" x:Name="SqlIp" ToolTip="IP" HorizontalContentAlignment="Left"></TextBox>
-        <TextBox Grid.Row="2" x:Name="DBName" ToolTip="Databse name"></TextBox>
-        <TextBox Grid.Row="3" x:Name="UserName" ToolTip="User name"></TextBox>
-        <PasswordBox x:Name="password" PasswordChar="*" Grid.Row="4" ToolTip="Password"></PasswordBox>
-        <Button x:Name="Connect" Content="Connect" FontSize="15" Grid.Row="5" Click="Connect_Click" FontWeight="Bold"></Button>
+        <TextBlock FontSize="20" Grid.Row="0" x:Name="main" Text="Podaj dane do połączenia z serwerem sql" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBox FontSize="20" Grid.Row="1" x:Name="LoginName" ToolTip="User name"></TextBox>
+        <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Row="2" ToolTip="Password"></PasswordBox>
+        <Button x:Name="Login" Content="Log in" FontSize="15" Grid.Row="3" FontWeight="Bold" Click="Login_Click"></Button>
     </Grid>
 </Window>

@@ -1,18 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Biblioteka_2
 {
@@ -21,27 +8,32 @@ namespace Biblioteka_2
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserProfile user = null;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Connect_Click(object sender, RoutedEventArgs e)
+        private void hidemain(object sender, object a)
         {
-            SqlLogin sqlLogin = new SqlLogin();
-            try
+            this.Visibility = Visibility.Hidden;
+            this.Close();
+        }
+        private void showmain(object sender, string e)
+        {
+            this.Visibility = Visibility.Visible;
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            Module module = new Module();
+            module.login(Module.connectionstring, LoginName.Text, passw.Password,this);
+            if(Module.user != null)
             {
-                if(sqlLogin.Login(SqlIp.Text, DBName.Text, UserName.Text, password.Password,out user));
-                {
-                    main.Text = "Połączono";
-                }
-                main.FontSize = 10;
-                main.Text = user.name + "\n" + user.password + "\n" + user.ip + "\n" + user.databaseName;
+                main.Text = Module.user._FirstName +"\n"+Module.user._LastName+"\n";
             }
-            catch(Exception ex)
+            else
             {
-                main.Text = ex.Message;
+                main.Text = "!!!BŁĄD!!!\nPodaj dane do połączenia z serwerem sql";
             }
         }
     }
