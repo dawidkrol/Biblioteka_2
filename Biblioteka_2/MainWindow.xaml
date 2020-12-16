@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="20" Grid.Row="0" x:Name="main" Text="Podaj dane do połączenia z serwerem sql"></TextBlock>
+        <TextBox Grid.Row="1" x:Name="SqlIp" ToolTip="IP" HorizontalContentAlignment="Left"></TextBox>
+        <TextBox Grid.Row="2" x:Name="DBName" ToolTip="Databse name"></TextBox>
+        <TextBox Grid.Row="3" x:Name="UserName" ToolTip="User name"></TextBox>
+        <PasswordBox x:Name="password" PasswordChar="*" Grid.Row="4" ToolTip="Password"></PasswordBox>
+        <Button x:Name="Connect" Content="Connect" FontSize="15" Grid.Row="5" Click="Connect_Click" FontWeight="Bold"></Button>
     </Grid>
 </Window>

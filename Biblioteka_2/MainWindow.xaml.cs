@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,28 @@ namespace Biblioteka_2
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserProfile user = null;
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Connect_Click(object sender, RoutedEventArgs e)
+        {
+            SqlLogin sqlLogin = new SqlLogin();
+            try
+            {
+                if(sqlLogin.Login(SqlIp.Text, DBName.Text, UserName.Text, password.Password,out user));
+                {
+                    main.Text = "Połączono";
+                }
+                main.FontSize = 10;
+                main.Text = user.name + "\n" + user.password + "\n" + user.ip + "\n" + user.databaseName;
+            }
+            catch(Exception ex)
+            {
+                main.Text = ex.Message;
+            }
         }
     }
 }
