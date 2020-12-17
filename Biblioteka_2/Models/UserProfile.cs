@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Text;
-
-namespace Biblioteka_2
+﻿namespace Biblioteka_2
 {
     public class UserProfile
     {
@@ -11,7 +6,7 @@ namespace Biblioteka_2
         public string _LastName { get; }
         public string _password { get; }
         public string _login { get; }
-        public UserProfile(string FirstName,string LastName,string UserPassword,string login)
+        public UserProfile(string FirstName, string LastName, string UserPassword, string login)
         {
             _FirstName = FirstName;
             _LastName = LastName;

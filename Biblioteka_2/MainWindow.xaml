@@ -5,17 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka_2"
         mc:Ignorable="d"
-        Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen">
-    <Grid Background="AliceBlue">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock FontSize="20" Grid.Row="0" x:Name="main" Text="Podaj dane do połączenia z serwerem sql" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBox FontSize="20" Grid.Row="1" x:Name="LoginName" ToolTip="User name"></TextBox>
-        <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Row="2" ToolTip="Password"></PasswordBox>
-        <Button x:Name="Login" Content="Log in" FontSize="15" Grid.Row="3" FontWeight="Bold" Click="Login_Click"></Button>
-    </Grid>
+        Title="Login" Height="400" Width="800" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen" Visibility="Visible" Closing="Window_Closing">
 </Window>

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Biblioteka_2
 {
@@ -20,22 +10,19 @@ namespace Biblioteka_2
         public ReconnectSql()
         {
             InitializeComponent();
-            SqlIp.Text = Module.SqlProfile.ip;
-            DBName.Text = Module.SqlProfile.databaseName;
-            UserName.Text = Module.SqlProfile.name;
-        }
-
-        private void hideReconnect(object sender, string e)
-        {
-            this.Close();
+            //SqlIp.Text = Module.SqlProfile.ip ?? " ";
+            //DBName.Text = Module.SqlProfile.databaseName ?? " ";
+            //UserName.Text = Module.SqlProfile.name ?? " ";
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             Module module = new Module();
-            if(module.Updatesqlprofile(SqlIp.Text, DBName.Text, UserName.Text, password.Password,this))
+            if (module.UpdateSqlProfile(SqlIp.Text, DBName.Text, UserName.Text, password.Password, this))
             {
                 title_sql.Text = "Połączono";
+                this.Close();
+                LoginWindow loginWindow = new LoginWindow();
             }
             else
             {

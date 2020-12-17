@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 using System.Windows;
 
 namespace Biblioteka_2
@@ -11,37 +10,32 @@ namespace Biblioteka_2
         public static string connectionstring { get; private set; }
         public static UserProfile user { get; private set; }
         public static SqlProfile SqlProfile { get; private set; }
+
         static Module()
         {
-            SqlProfile = new SqlProfile("sa", "zaq1@WSX", "biblioteka_2", "192.168.0.19");
-            connectionstring = SqlProfile.connectionString;
+            //SqlProfile = new SqlProfile("sa", "zaq1@WSX", "biblioteka_2", "192.168.0.19");
+            //connectionstring = SqlProfile.connectionString;
+            if (FileConfig.fileEx())
+            {
+                    FileConfig info = new FileConfig();
+                    SqlProfile = info.GetInfo();
+                    connectionstring = SqlProfile.connectionString;
+                    Module module = new Module();
+                    module.openLogin();
+            }
+            else
+            {
+                FileConfig file = new FileConfig();
+                file.CreateConfigFile();
+                Reconnect();
+            }
         }
 
-
-        public void login(string connectionString, string name, string password,object sender)
+        public void login(string name, string password,object sender)
         {
-            List<UserProfile> users = new List<UserProfile>();
-            string sql = "select * from Users";
             try
             {
-                using (SqlConnection cnn = new SqlConnection(connectionString))
-                using (SqlCommand cmm = new SqlCommand(sql, cnn))
-                {
-                    SqlDataReader reader = null;
-                    cnn.Open();
-                    reader = cmm.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            string login = reader.GetString(1);
-                            string pass = reader.GetString(2);
-                            string fn = reader.GetString(3);
-                            string ln = reader.GetString(4);
-                            users.Add(new UserProfile(fn, ln, pass, login));
-                        }
-                    }
-                }
+                List<UserProfile> users = Login.getUsers();
                 foreach (var item in users)
                 {
                     if (name == item._login && password == item._password)
@@ -50,21 +44,29 @@ namespace Biblioteka_2
                     }
                 }
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
-                ReconnectSql reconnect = new ReconnectSql();
-                reconnect.Activate();
-                reconnect.Visibility = System.Windows.Visibility.Visible;
                 var se = (Window)sender;
                 se.Visibility = Visibility.Hidden;
                 se.Close();
+                Reconnect();
             }
         }
-
-
-        public bool Updatesqlprofile(string ip, string databaseName, string userName, string password, object sender)
+        public void openLogin()
         {
-            bool output = false;
+            LoginWindow login = new LoginWindow();
+            login.Visibility = Visibility.Visible;
+        }
+
+        public static void Reconnect()
+        {
+            ReconnectSql reconnect = new ReconnectSql();
+            reconnect.Activate();
+            reconnect.Visibility = Visibility.Visible;
+        }
+
+        public bool UpdateSqlProfile(string ip, string databaseName, string userName, string password, object sender)
+        {
             SqlConnectionLogin sqlLogin = new SqlConnectionLogin();
             SqlProfile profile = null;
             try
@@ -72,19 +74,18 @@ namespace Biblioteka_2
                 sqlLogin.Login(ip, databaseName, userName, password, out profile);
                 connectionstring = profile.connectionString;
                 SqlProfile = profile;
-                output = true;
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Visibility = Visibility.Visible;
+                FileConfig file = new FileConfig();
+                file.ConfigWrite(SqlProfile);
                 var se = (Window)sender;
-                se.Visibility = Visibility.Hidden;
                 se.Close();
-                return output;
+                Module module = new Module();
+                module.openLogin();
+                return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return output;
+                return false;
             }
         }
     }
-
 }
