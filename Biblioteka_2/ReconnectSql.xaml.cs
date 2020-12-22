@@ -7,22 +7,19 @@ namespace Biblioteka_2
     /// </summary>
     public partial class ReconnectSql : Window
     {
-        public ReconnectSql()
+        Module _module = null;
+        public ReconnectSql(Module module)
         {
             InitializeComponent();
-            //SqlIp.Text = Module.SqlProfile.ip ?? " ";
-            //DBName.Text = Module.SqlProfile.databaseName ?? " ";
-            //UserName.Text = Module.SqlProfile.name ?? " ";
+            _module = module;
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-            Module module = new Module();
-            if (module.UpdateSqlProfile(SqlIp.Text, DBName.Text, UserName.Text, password.Password, this))
+            if (_module.UpdateSqlProfile(SqlIp.Text, DBName.Text, UserName.Text, password.Password, this))
             {
                 title_sql.Text = "Połączono";
                 this.Close();
-                LoginWindow loginWindow = new LoginWindow();
             }
             else
             {

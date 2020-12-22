@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Biblioteka_2
 {
@@ -20,10 +18,15 @@ namespace Biblioteka_2
             bool output = false;
             FileInfo info = new FileInfo("_config.txt");
             output = info.Exists;
+            if(!output)
+            {
+                FileConfig fileConfig = new FileConfig();
+                fileConfig.CreateConfigFile();
+            }
             return output;
         }
 
-        public void CreateConfigFile()
+        private void CreateConfigFile()
         {
             FileInfo file = new FileInfo("_config.txt");
             file.Create().Close();
@@ -47,7 +50,7 @@ namespace Biblioteka_2
                 SqlProfile output = new SqlProfile(vs[0], vs[1], vs[3], vs[2]);
                 return output;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }

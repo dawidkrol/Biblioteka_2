@@ -8,6 +8,7 @@
         Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -15,11 +16,12 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="20" Grid.Row="0" x:Name="title_sql" Text="Sprawdź dane i wprowadź hasło" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBox Grid.Row="1" x:Name="SqlIp" ToolTip="IP" HorizontalContentAlignment="Left"></TextBox>
-        <TextBox Grid.Row="2" x:Name="DBName" ToolTip="Databse name"></TextBox>
-        <TextBox Grid.Row="3" x:Name="UserName" ToolTip="User name"></TextBox>
-        <PasswordBox x:Name="password" PasswordChar="*" Grid.Row="4" ToolTip="Password"></PasswordBox>
-        <Button x:Name="Connect" Content="Connect" FontSize="15" Grid.Row="5" Click="Connect_Click" FontWeight="Bold"></Button>
+        <Grid Grid.Row="0" Background="#FF361600"></Grid>
+        <TextBlock FontSize="20" Grid.Row="1" x:Name="title_sql" Text="Wprowadź dane" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Row="2" x:Name="SqlIp" ToolTip="IP" HorizontalContentAlignment="Left" Foreground="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
+        <TextBox Grid.Row="3" x:Name="DBName" ToolTip="Databse name" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+        <TextBox Grid.Row="4" x:Name="UserName" ToolTip="User name" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+        <PasswordBox x:Name="password" PasswordChar="*" Grid.Row="5" ToolTip="Password" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></PasswordBox>
+        <Button x:Name="Connect" Content="Connect" FontSize="15" Grid.Row="6" Click="Connect_Click" FontWeight="Bold" Background="#FF953511" Foreground="White"></Button>
     </Grid>
 </Window>

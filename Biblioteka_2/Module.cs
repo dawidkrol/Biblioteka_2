@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -7,40 +8,50 @@ namespace Biblioteka_2
 {
     public class Module
     {
-        public static string connectionstring { get; private set; }
-        public static UserProfile user { get; private set; }
-        public static SqlProfile SqlProfile { get; private set; }
-
-        static Module()
+        public event PropertyChangedEventHandler PropertyChanged;
+        public string connectionstring { get; private set; }
+        public UserProfile user { get; private set; }
+        public SqlProfile SqlProfile { get; private set; }
+        private bool _login { get; set; }
+        public bool IsLogged
         {
-            //SqlProfile = new SqlProfile("sa", "zaq1@WSX", "biblioteka_2", "192.168.0.19");
-            //connectionstring = SqlProfile.connectionString;
+            get
+            {
+                return _login;
+            }
+            set
+            {
+                _login = value;
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(_login.ToString()));
+            }
+        }
+
+        public Module()
+        {
             if (FileConfig.fileEx())
             {
-                    FileConfig info = new FileConfig();
-                    SqlProfile = info.GetInfo();
-                    connectionstring = SqlProfile.connectionString;
-                    Module module = new Module();
-                    module.openLogin();
+                FileConfig info = new FileConfig();
+                SqlProfile = info.GetInfo();
+                connectionstring = SqlProfile.connectionString;
+                openLogin();
             }
             else
             {
-                FileConfig file = new FileConfig();
-                file.CreateConfigFile();
                 Reconnect();
             }
         }
 
-        public void login(string name, string password,object sender)
+        internal void login(string name, string password, object sender)
         {
             try
             {
-                List<UserProfile> users = Login.getUsers();
+                List<UserProfile> users = Login.getUsers(this);
                 foreach (var item in users)
                 {
                     if (name == item._login && password == item._password)
                     {
                         user = new UserProfile(item._FirstName, item._LastName, item._password, item._login);
+                        IsLogged = true;
                     }
                 }
             }
@@ -52,25 +63,33 @@ namespace Biblioteka_2
                 Reconnect();
             }
         }
-        public void openLogin()
+
+        private void openLogin()
         {
-            LoginWindow login = new LoginWindow();
+            LoginWindow login = new LoginWindow(this);
             login.Visibility = Visibility.Visible;
         }
 
-        public static void Reconnect()
+        private void Reconnect()
         {
-            ReconnectSql reconnect = new ReconnectSql();
+            ReconnectSql reconnect = new ReconnectSql(this);
             reconnect.Activate();
             reconnect.Visibility = Visibility.Visible;
+        }
+
+        internal void logout()
+        {
+            IsLogged = false;
+            user = null;
+            openLogin();
         }
 
         public bool UpdateSqlProfile(string ip, string databaseName, string userName, string password, object sender)
         {
             SqlConnectionLogin sqlLogin = new SqlConnectionLogin();
-            SqlProfile profile = null;
             try
             {
+                SqlProfile profile;
                 sqlLogin.Login(ip, databaseName, userName, password, out profile);
                 connectionstring = profile.connectionString;
                 SqlProfile = profile;
@@ -78,8 +97,7 @@ namespace Biblioteka_2
                 file.ConfigWrite(SqlProfile);
                 var se = (Window)sender;
                 se.Close();
-                Module module = new Module();
-                module.openLogin();
+                openLogin();
                 return true;
             }
             catch (Exception)

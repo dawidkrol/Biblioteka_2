@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Biblioteka_2
 {
     class Login
     {
-        public static List<UserProfile> getUsers()
+        public static List<UserProfile> getUsers(Module _module)
         {
             List<UserProfile> output = null;
             string sql = "select * from Users";
             try
             {
                 output = new List<UserProfile>();
-                using (SqlConnection cnn = new SqlConnection(Module.connectionstring))
+                using (SqlConnection cnn = new SqlConnection(_module.connectionstring))
                 using (SqlCommand cmm = new SqlCommand(sql, cnn))
                 {
                     SqlDataReader reader = null;
@@ -39,5 +37,5 @@ namespace Biblioteka_2
                 throw e;
             }
         }
-        }
+    }
 }

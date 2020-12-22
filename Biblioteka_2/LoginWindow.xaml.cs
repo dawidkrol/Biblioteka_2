@@ -17,16 +17,17 @@ namespace Biblioteka_2
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        Module _module = null;
+        public LoginWindow(Module module)
         {
             InitializeComponent();
+            _module = module;
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            Module module = new Module();
-            module.login(LoginName.Text, passw.Password, this);
-            if (Module.user != null)
+            _module.login(LoginName.Text, passw.Password, this);
+            if (_module.user != null)
             {
                 main.Text = "Zalogowano";
                 this.Close();

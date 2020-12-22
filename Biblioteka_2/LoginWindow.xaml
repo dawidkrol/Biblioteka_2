@@ -13,9 +13,11 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="20" Grid.Row="0" x:Name="main" Text="Podaj dane do połączenia z serwerem sql" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBox FontSize="20" Grid.Row="1" x:Name="LoginName" ToolTip="User name"></TextBox>
-        <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Row="2" ToolTip="Password"></PasswordBox>
-        <Button x:Name="Login" Content="Log in" FontSize="15" Grid.Row="3" FontWeight="Bold" Click="Login_Click"></Button>
+        <Grid Grid.Row="0" Background="#FF361600">
+            <TextBlock FontSize="20" x:Name="main" Text="Podaj dane do połączenia z serwerem sql" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+        </Grid>
+        <TextBox FontSize="20" Grid.Row="1" x:Name="LoginName" ToolTip="User name" VerticalContentAlignment="Center"></TextBox>
+        <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Row="2" ToolTip="Password" VerticalContentAlignment="Center"></PasswordBox>
+        <Button x:Name="Login" Content="Log in" FontSize="15" Grid.Row="3" FontWeight="Bold" Click="Login_Click" Background="#FF953511" Foreground="#FFF7F7F7" ></Button>
     </Grid>
 </Window>
