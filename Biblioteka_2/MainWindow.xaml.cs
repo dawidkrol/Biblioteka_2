@@ -1,5 +1,8 @@
 ﻿using Biblioteka_2.Data;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,14 +14,14 @@ namespace Biblioteka_2
     public partial class MainWindow : Window
     {
         Module _module = new Module();
-        GetData _data = null;
+        GetData _data = new GetData();
 
         public MainWindow()
         {
+            _data.poggers += progress;
             _module.PropertyChanged += allowShow;
             InitializeComponent();
             this.Visibility = Visibility.Hidden;
-            _data = new GetData();
         }
 
         private void allowShow(object sender, PropertyChangedEventArgs e)
@@ -70,9 +73,26 @@ namespace Biblioteka_2
             }
         }
 
+        private async Task<string> GetThisData()
+        {
+            string output = await Task.Run(() => _data.thisIsData());
+            return output;
+
+        }
+        int p = 0;
+        public void progress(object sender, EventArgs eventArgs)
+        {
+            poggers.Value = ++p;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _module.logout();
+        }
+
+        private void but_Click(object sender, RoutedEventArgs e)
+        {
+            _ = GetThisData();
         }
     }
 }

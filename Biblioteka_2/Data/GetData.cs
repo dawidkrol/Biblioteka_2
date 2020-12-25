@@ -36,5 +36,18 @@ namespace Biblioteka_2.Data
         //    }
         //    return cos;
         //}
+        public event EventHandler poggers;
+        public string thisIsData()
+        {
+            string outout = null;
+            string[] vs = "Dawid Krol to ziomal dsadsa dasdsa sdada dsadsa dsa dsa".Split();
+            for(int i = 0; i <= vs.Length - 1; i++)
+            {
+                outout += vs[i];
+                System.Threading.Thread.Sleep(1000);
+                poggers.Invoke(this,EventArgs.Empty);
+            }
+            return outout;
+        }
     }
 }
