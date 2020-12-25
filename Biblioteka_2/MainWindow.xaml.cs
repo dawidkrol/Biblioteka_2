@@ -18,7 +18,6 @@ namespace Biblioteka_2
 
         public MainWindow()
         {
-            _data.poggers += progress;
             _module.PropertyChanged += allowShow;
             InitializeComponent();
             this.Visibility = Visibility.Hidden;
@@ -30,6 +29,7 @@ namespace Biblioteka_2
             if (module.IsLogged == true)
             {
                 this.Visibility = Visibility.Visible;
+                _ = GetThisData();
             }
             else
             {
@@ -75,24 +75,23 @@ namespace Biblioteka_2
 
         private async Task<string> GetThisData()
         {
-            string output = await Task.Run(() => _data.thisIsData());
+            string output = await Task.Run(() => _data.thisIsData(progress));
             return output;
 
         }
         int p = 0;
-        public void progress(object sender, EventArgs eventArgs)
+        public void progress(int max)
         {
-            poggers.Value = ++p;
+            this.Dispatcher.Invoke(() =>
+            {
+                poggers.Maximum = max - 1;
+                poggers.Value = ++p;
+            });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _module.logout();
-        }
-
-        private void but_Click(object sender, RoutedEventArgs e)
-        {
-            _ = GetThisData();
         }
     }
 }

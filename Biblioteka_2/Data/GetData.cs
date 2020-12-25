@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Biblioteka_2.Data
 {
@@ -36,16 +37,15 @@ namespace Biblioteka_2.Data
         //    }
         //    return cos;
         //}
-        public event EventHandler poggers;
-        public string thisIsData()
+        public string thisIsData(Action<int> action)
         {
             string outout = null;
-            string[] vs = "Dawid Krol to ziomal dsadsa dasdsa sdada dsadsa dsa dsa".Split();
+            string[] vs = "1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0".Split();
             for(int i = 0; i <= vs.Length - 1; i++)
             {
                 outout += vs[i];
-                System.Threading.Thread.Sleep(1000);
-                poggers.Invoke(this,EventArgs.Empty);
+                System.Threading.Thread.Sleep(5);
+                action.Invoke(vs.Length);
             }
             return outout;
         }
