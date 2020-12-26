@@ -33,18 +33,28 @@
                 <RowDefinition Height="30*"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <ProgressBar Maximum="20" x:Name="poggers" Background="#FF361600" Grid.Row="1"></ProgressBar>
+            <ProgressBar Maximum="100" x:Name="progresBarUnder" Background="Transparent" Foreground="#FF953511" Grid.Row="1" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                <ProgressBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ProgressBar.RenderTransform>
+            </ProgressBar>
         </Grid>
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF361600">
+        <Grid Height="60" VerticalAlignment="Top" Background="Transparent">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Logout" Click="Button_Click" Background="#FF361600" Foreground="White" FontSize="16" BorderBrush="#FF361600" HorizontalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0,0,0,0" Margin="0,0,15,0"/>
+            <ProgressBar Maximum="100" x:Name="pogersBarUpper" Background="Transparent" Foreground="#FF361600" Grid.Row="1"></ProgressBar>
+            <StackPanel x:Name="LogoutPanel" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Logout" Click="Button_Click" Background="Transparent" Foreground="White" FontSize="16" BorderBrush="#FF361600" HorizontalContentAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0,0,0,0" Margin="0,0,15,0"/>
             </StackPanel>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">biblioteka_2</TextBlock>
+            <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">biblioteka_2</TextBlock>
         </Grid>
-        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#FF953511">
+        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="Transparent">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
             </Grid.Effect>
@@ -93,6 +103,7 @@
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
+                <ProgressBar Orientation="Vertical" Maximum="100" x:Name="progresBarLeft" Background="Transparent" Height="190" Foreground="#FF953511" Grid.Row="1"></ProgressBar>
             </StackPanel>
         </Grid>
     </Grid>

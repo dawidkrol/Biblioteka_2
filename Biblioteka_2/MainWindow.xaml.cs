@@ -20,7 +20,9 @@ namespace Biblioteka_2
         {
             _module.PropertyChanged += allowShow;
             InitializeComponent();
+            title.Visibility = Visibility.Hidden;
             this.Visibility = Visibility.Hidden;
+            LogoutPanel.Visibility = Visibility.Hidden;
         }
 
         private void allowShow(object sender, PropertyChangedEventArgs e)
@@ -75,17 +77,30 @@ namespace Biblioteka_2
 
         private async Task<string> GetThisData()
         {
-            string output = await Task.Run(() => _data.thisIsData(progress));
+            Progress<int> _progress = new Progress<int>();
+            _progress.ProgressChanged += Progress;
+            string output = await Task.Run(() => _data.thisIsData(_progress));
             return output;
 
         }
-        int p = 0;
-        public void progress(int max)
+
+        private void Progress(object sender, int e)
         {
             this.Dispatcher.Invoke(() =>
             {
-                poggers.Maximum = max - 1;
-                poggers.Value = ++p;
+                progresBarUnder.Value = e;
+                pogersBarUpper.Value = e;
+                progresBarLeft.Value = e;
+                if(e == 100)
+                {
+                    title.Visibility = Visibility.Visible;
+                    LogoutPanel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    title.Visibility = Visibility.Hidden;
+                    LogoutPanel.Visibility = Visibility.Hidden;
+                }
             });
         }
 
