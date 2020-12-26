@@ -37,7 +37,7 @@ namespace Biblioteka_2.Data
         //    }
         //    return cos;
         //}
-        public string thisIsData(Action<int> action)
+        public string thisIsData(IProgress<int> progress)
         {
             string outout = null;
             string[] vs = "1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0".Split();
@@ -45,7 +45,7 @@ namespace Biblioteka_2.Data
             {
                 outout += vs[i];
                 System.Threading.Thread.Sleep(5);
-                action.Invoke(vs.Length);
+                progress.Report((i * 100) / (vs.Length - 1));
             }
             return outout;
         }
