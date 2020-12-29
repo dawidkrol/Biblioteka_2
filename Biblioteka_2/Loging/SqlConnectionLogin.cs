@@ -5,7 +5,7 @@ namespace Biblioteka_2
 {
     public class SqlConnectionLogin
     {
-        public bool Login(string ip, string databaseName, string userName, string password, out SqlProfile user)
+        public SqlProfile Login(string ip, string databaseName, string userName, string password)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = ip;
@@ -19,8 +19,7 @@ namespace Biblioteka_2
                 {
                     cnn.Open();
                     SqlProfile profile = new SqlProfile(userName, password, databaseName, ip);
-                    user = profile;
-                    return true;
+                    return profile;
                 }
                 catch (Exception exc)
                 {

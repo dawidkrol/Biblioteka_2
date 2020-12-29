@@ -8,10 +8,9 @@ namespace Biblioteka_2
 {
     public class Module
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public string connectionstring { get; private set; }
-        public UserProfile user { get; private set; }
-        public SqlProfile SqlProfile { get; private set; }
+        internal event PropertyChangedEventHandler LoginProperty;
+        internal IUserProfile user { get; private set; }
+        internal SqlProfile SqlProfile { get; private set; }
         private bool _login { get; set; }
         public bool IsLogged
         {
@@ -22,7 +21,7 @@ namespace Biblioteka_2
             set
             {
                 _login = value;
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(_login.ToString()));
+                LoginProperty.Invoke(this, new PropertyChangedEventArgs(_login.ToString()));
             }
         }
 
@@ -32,7 +31,6 @@ namespace Biblioteka_2
             {
                 FileConfig info = new FileConfig();
                 SqlProfile = info.GetInfo();
-                connectionstring = SqlProfile.connectionString;
                 openLogin();
             }
             else
@@ -57,7 +55,7 @@ namespace Biblioteka_2
             }
             catch (SqlException)
             {
-                var se = (Window)sender;
+                Window se = (Window)sender;
                 se.Visibility = Visibility.Hidden;
                 se.Close();
                 Reconnect();
@@ -89,18 +87,17 @@ namespace Biblioteka_2
             SqlConnectionLogin sqlLogin = new SqlConnectionLogin();
             try
             {
-                SqlProfile profile;
-                sqlLogin.Login(ip, databaseName, userName, password, out profile);
-                connectionstring = profile.connectionString;
-                SqlProfile = profile;
-                FileConfig file = new FileConfig();
-                file.ConfigWrite(SqlProfile);
-                var se = (Window)sender;
+                SqlProfile = sqlLogin.Login(ip, databaseName, userName, password);
+                FileConfig fileConfig = new FileConfig();
+                fileConfig.ConfigWrite(SqlProfile);
+
+                Window se = (Window)sender;
                 se.Close();
+
                 openLogin();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }

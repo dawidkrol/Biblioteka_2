@@ -12,7 +12,7 @@ namespace Biblioteka_2
             try
             {
                 output = new List<UserProfile>();
-                using (SqlConnection cnn = new SqlConnection(_module.connectionstring))
+                using (SqlConnection cnn = new SqlConnection(_module.SqlProfile.connectionString.ToString()))
                 using (SqlCommand cmm = new SqlCommand(sql, cnn))
                 {
                     SqlDataReader reader = null;

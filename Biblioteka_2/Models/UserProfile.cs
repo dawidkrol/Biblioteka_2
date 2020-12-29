@@ -1,6 +1,6 @@
 ﻿namespace Biblioteka_2
 {
-    public class UserProfile
+    public class UserProfile : IUserProfile
     {
         public string _FirstName { get; }
         public string _LastName { get; }

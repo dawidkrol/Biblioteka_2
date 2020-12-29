@@ -18,7 +18,7 @@ namespace Biblioteka_2
 
         public MainWindow()
         {
-            _module.PropertyChanged += allowShow;
+            _module.LoginProperty += allowShow;
             InitializeComponent();
             title.Visibility = Visibility.Hidden;
             this.Visibility = Visibility.Hidden;

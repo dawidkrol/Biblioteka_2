@@ -8,14 +8,14 @@ namespace Biblioteka_2
         public string password { get; }
         public string databaseName { get; }
         public string ip { get; }
-        public string connectionString { get; }
+        public SqlConnectionStringBuilder connectionString { get; }
         public SqlProfile(string UserName, string UserPassword, string DatabaseName, string Ip)
         {
             name = UserName;
             password = UserPassword;
             databaseName = DatabaseName;
             ip = Ip;
-            connectionString = createConnectionString(UserName, UserPassword, DatabaseName, Ip).ToString();
+            connectionString = createConnectionString(UserName, UserPassword, DatabaseName, Ip);
         }
         private SqlConnectionStringBuilder createConnectionString(string UserName, string UserPassword, string DatabaseName, string Ip)
         {
