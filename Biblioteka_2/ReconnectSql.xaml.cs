@@ -8,6 +8,7 @@ namespace Biblioteka_2
     public partial class ReconnectSql : Window
     {
         Module _module = null;
+        bool isConnected = false;
         public ReconnectSql(Module module)
         {
             InitializeComponent();
@@ -16,14 +17,23 @@ namespace Biblioteka_2
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-            if (_module.UpdateSqlProfile(SqlIp.Text, DBName.Text, UserName.Text, password.Password, this))
+            if (_module.UpdateSqlProfile(SqlIp.Text, DBName.Text, UserName.Text, password.Password))
             {
+                isConnected = true;
                 title_sql.Text = "Połączono";
                 this.Close();
             }
             else
             {
                 title_sql.Text = "Błąd";
+            }
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            if(isConnected == false)
+            {
+                App.Current.Shutdown();
             }
         }
     }

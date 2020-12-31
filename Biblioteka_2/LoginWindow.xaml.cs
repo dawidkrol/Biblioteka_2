@@ -37,5 +37,13 @@ namespace Biblioteka_2
                 main.Text = "!!!BŁĄD!!!\nPodaj dane do połączenia z serwerem sql";
             }
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if(_module.IsLogged == false)
+            {
+                App.Current.Shutdown();
+            }
+        }
     }
 }

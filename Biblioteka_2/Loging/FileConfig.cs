@@ -18,11 +18,6 @@ namespace Biblioteka_2
             bool output = false;
             FileInfo info = new FileInfo("_config.txt");
             output = info.Exists;
-            if(!output)
-            {
-                FileConfig fileConfig = new FileConfig();
-                fileConfig.CreateConfigFile();
-            }
             return output;
         }
 
@@ -34,6 +29,7 @@ namespace Biblioteka_2
 
         public void ConfigWrite(SqlProfile sqlProfile)
         {
+            CreateConfigFile();
             StreamWriter streamWriter = new StreamWriter("_config.txt");
             streamWriter.Write($"{sqlProfile.name},{sqlProfile.password},{sqlProfile.ip},{sqlProfile.databaseName}");
             streamWriter.Close();

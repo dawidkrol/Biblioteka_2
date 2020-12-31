@@ -11,7 +11,7 @@ namespace Biblioteka_2
         internal event PropertyChangedEventHandler LoginProperty;
         internal IUserProfile user { get; private set; }
         internal SqlProfile SqlProfile { get; private set; }
-        private bool _login { get; set; }
+        private bool _login { get; set; } = false;
         public bool IsLogged
         {
             get
@@ -35,7 +35,7 @@ namespace Biblioteka_2
             }
             else
             {
-                Reconnect();
+                openReconnect();
             }
         }
 
@@ -58,17 +58,18 @@ namespace Biblioteka_2
                 Window se = (Window)sender;
                 se.Visibility = Visibility.Hidden;
                 se.Close();
-                Reconnect();
+                openReconnect();
             }
         }
 
         private void openLogin()
         {
             LoginWindow login = new LoginWindow(this);
+            login.Activate();
             login.Visibility = Visibility.Visible;
         }
 
-        private void Reconnect()
+        private void openReconnect()
         {
             ReconnectSql reconnect = new ReconnectSql(this);
             reconnect.Activate();
@@ -82,22 +83,18 @@ namespace Biblioteka_2
             openLogin();
         }
 
-        public bool UpdateSqlProfile(string ip, string databaseName, string userName, string password, object sender)
+        public bool UpdateSqlProfile(string ip, string databaseName, string userName, string password)
         {
             SqlConnectionLogin sqlLogin = new SqlConnectionLogin();
+            FileConfig fileConfig = new FileConfig();
             try
             {
                 SqlProfile = sqlLogin.Login(ip, databaseName, userName, password);
-                FileConfig fileConfig = new FileConfig();
                 fileConfig.ConfigWrite(SqlProfile);
-
-                Window se = (Window)sender;
-                se.Close();
-
                 openLogin();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }

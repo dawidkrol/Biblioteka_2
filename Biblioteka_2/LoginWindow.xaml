@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka_2"
         mc:Ignorable="d"
-        Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen">
+        Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
