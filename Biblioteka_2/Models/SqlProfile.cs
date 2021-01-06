@@ -2,7 +2,7 @@
 
 namespace Biblioteka_2
 {
-    public class SqlProfile
+    public class SqlProfile : ISqlProfile
     {
         public string name { get; }
         public string password { get; }

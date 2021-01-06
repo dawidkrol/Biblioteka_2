@@ -3,15 +3,15 @@ using System.Data.SqlClient;
 
 namespace Biblioteka_2
 {
-    class Login
+    class Login : ILogin
     {
-        public static List<UserProfile> getUsers(Module _module)
+        public List<T> getUsers<T>(IModule _module) where T : IUserProfile, new()
         {
-            List<UserProfile> output = null;
+            List<T> output = null;
             string sql = "select * from Users";
             try
             {
-                output = new List<UserProfile>();
+                output = new List<T>();
                 using (SqlConnection cnn = new SqlConnection(_module.SqlProfile.connectionString.ToString()))
                 using (SqlCommand cmm = new SqlCommand(sql, cnn))
                 {
@@ -26,7 +26,7 @@ namespace Biblioteka_2
                             string pass = reader.GetString(2);
                             string fn = reader.GetString(3);
                             string ln = reader.GetString(4);
-                            output.Add(new UserProfile(fn, ln, pass, login));
+                            output.Add(new T() { _FirstName = fn, _LastName = ln, _login = login, _password = pass });
                         }
                     }
                 }

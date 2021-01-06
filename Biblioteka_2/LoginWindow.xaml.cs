@@ -17,8 +17,8 @@ namespace Biblioteka_2
     /// </summary>
     public partial class LoginWindow : Window
     {
-        Module _module = null;
-        public LoginWindow(Module module)
+        IModule _module = null;
+        public LoginWindow(IModule module)
         {
             InitializeComponent();
             _module = module;
@@ -26,7 +26,7 @@ namespace Biblioteka_2
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            _module.login(LoginName.Text, passw.Password, this);
+            _module.login<UserProfile>(LoginName.Text, passw.Password, this);
             if (_module.user != null)
             {
                 main.Text = "Zalogowano";

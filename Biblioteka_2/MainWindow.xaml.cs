@@ -1,6 +1,6 @@
-﻿using Biblioteka_2.Data;
+﻿using Biblioteka_2.Controls;
+using Biblioteka_2.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,11 +13,12 @@ namespace Biblioteka_2
     /// </summary>
     public partial class MainWindow : Window
     {
-        Module _module = new Module();
-        GetData _data = new GetData();
+        IModule _module;
+        GetDeomoData _data = new GetDeomoData();
 
-        public MainWindow()
+        public MainWindow(IModule module)
         {
+            _module = module;
             _module.LoginProperty += allowShow;
             InitializeComponent();
             title.Visibility = Visibility.Hidden;
@@ -27,7 +28,7 @@ namespace Biblioteka_2
 
         private void allowShow(object sender, PropertyChangedEventArgs e)
         {
-            Module module = (Module)sender;
+            IModule module = (Module)sender;
             if (module.IsLogged == true)
             {
                 this.Visibility = Visibility.Visible;
@@ -55,21 +56,21 @@ namespace Biblioteka_2
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //UserControl usc = null;
+            UserControl usc = null;
             GridMain.Children.Clear();
-
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "ItemHome":
-                //usc = new UserControlHome();
-                //GridMain.Children.Add(usc);
-                //break;
+                case "delayed":
+                    usc = new delayed();
+                    GridMain.Children.Add(usc);
+                    usc.DataContext = await _data.GetTable(_module.SqlProfile.connectionString.ToString());
+                    break;
                 case "ItemCreate":
-                //usc = new UserControlCreate();
-                //GridMain.Children.Add(usc);
-                //break;
+                    //usc = new UserControlCreate();
+                    //GridMain.Children.Add(usc);
+                    break;
                 default:
                     break;
             }
@@ -91,7 +92,7 @@ namespace Biblioteka_2
                 progresBarUnder.Value = e;
                 pogersBarUpper.Value = e;
                 progresBarLeft.Value = e;
-                if(e == 100)
+                if (e == 100)
                 {
                     title.Visibility = Visibility.Visible;
                     LogoutPanel.Visibility = Visibility.Visible;
@@ -107,6 +108,7 @@ namespace Biblioteka_2
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _module.logout();
+            GridMain.Children.Clear();
         }
     }
 }

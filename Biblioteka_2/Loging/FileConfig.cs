@@ -3,39 +3,31 @@ using System.IO;
 
 namespace Biblioteka_2
 {
-    class FileConfig
+    class FileConfig : IFileConfig
     {
-
-        public SqlProfile getSqlProfile()
-        {
-            SqlProfile output = null;
-            GetInfo();
-            return output;
-        }
-
-        public static bool fileEx()
+        public bool fileEx(string path)
         {
             bool output = false;
-            FileInfo info = new FileInfo("_config.txt");
+            FileInfo info = new FileInfo(path);
             output = info.Exists;
             return output;
         }
 
-        private void CreateConfigFile()
+        public void CreateConfigFile(string path)
         {
-            FileInfo file = new FileInfo("_config.txt");
+            FileInfo file = new FileInfo(path);
             file.Create().Close();
         }
 
-        public void ConfigWrite(SqlProfile sqlProfile)
+        public void ConfigWrite(ISqlProfile sqlProfile, string path)
         {
-            CreateConfigFile();
+            CreateConfigFile(path);
             StreamWriter streamWriter = new StreamWriter("_config.txt");
             streamWriter.Write($"{sqlProfile.name},{sqlProfile.password},{sqlProfile.ip},{sqlProfile.databaseName}");
             streamWriter.Close();
         }
 
-        public SqlProfile GetInfo()
+        public ISqlProfile GetInfoSQL()
         {
             try
             {
@@ -43,7 +35,7 @@ namespace Biblioteka_2
                 string info = reader.ReadLine();
                 reader.Close();
                 string[] vs = info.Split(',');
-                SqlProfile output = new SqlProfile(vs[0], vs[1], vs[3], vs[2]);
+                ISqlProfile output = new SqlProfile(vs[0], vs[1], vs[3], vs[2]);
                 return output;
             }
             catch (Exception e)

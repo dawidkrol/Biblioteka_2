@@ -2,9 +2,9 @@
 {
     public interface IUserProfile
     {
-        string _FirstName { get; }
-        string _LastName { get; }
-        string _login { get; }
-        string _password { get; }
+        public string _FirstName { get; set; }
+        public  string _LastName { get; set; }
+        public string _login { get; set; }
+        public string _password { get; set; }
     }
 }

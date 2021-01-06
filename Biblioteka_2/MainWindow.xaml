@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Biblioteka_2.Controls"
         mc:Ignorable="d" Height="600" Width="1080" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
@@ -28,12 +29,12 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FFDEDEDE">
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010">
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="500" Width="1005" Margin="0,0,0,1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <ProgressBar Maximum="100" x:Name="progresBarUnder" Background="Transparent" Foreground="#FF953511" Grid.Row="1" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <ProgressBar Maximum="100" x:Name="progresBarUnder" Background="Transparent" Foreground="#FF953511" Grid.Row="1" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,-4">
                 <ProgressBar.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -84,7 +85,7 @@
                             <TextBlock Text="Menu" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="delayed" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AboutCircle" Height="25" Width="25" Margin="10" Foreground="#FFDA1910"/>
                             <TextBlock Text="Oczekiwanie" VerticalAlignment="Center"  Margin="20 10"/>

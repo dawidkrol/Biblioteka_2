@@ -7,9 +7,9 @@ namespace Biblioteka_2
     /// </summary>
     public partial class ReconnectSql : Window
     {
-        Module _module = null;
+        IModule _module = null;
         bool isConnected = false;
-        public ReconnectSql(Module module)
+        public ReconnectSql(IModule module)
         {
             InitializeComponent();
             _module = module;
