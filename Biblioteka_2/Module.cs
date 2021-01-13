@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Biblioteka_2
@@ -14,6 +13,8 @@ namespace Biblioteka_2
         IConnectionLogin _sqlLogin;
         MainWindow _mainWindow;
         public event PropertyChangedEventHandler LoginProperty;
+
+        public string configFileName { get; } = "_config.txt";
         public IUserProfile user { get; private set; }
         public ISqlProfile SqlProfile { get; private set; }
         public bool _login { get; set; } = false;
@@ -30,15 +31,15 @@ namespace Biblioteka_2
             }
         }
 
-        public Module(IConnectionLogin sqlLogin,IFileConfig fileConfig,ILogin login)
+        public Module(IConnectionLogin sqlLogin, IFileConfig fileConfig, ILogin login)
         {
             _loginClass = login;
             _fileConfig = fileConfig;
             _sqlLogin = sqlLogin;
             _mainWindow = new MainWindow(this);
-            if (_fileConfig.fileEx("_config.txt"))
+            if (_fileConfig.fileEx(configFileName))
             {
-                SqlProfile = _fileConfig.GetInfoSQL();
+                SqlProfile = _fileConfig.GetInfoSQL(configFileName);
                 openLogin();
             }
             else
@@ -47,17 +48,19 @@ namespace Biblioteka_2
             }
         }
 
-        public void login<T>(string name, string password, object sender) where T: IUserProfile, new()
+        public async Task<bool> login<T>(string name, string password, object sender) where T : IUserProfile, new()
         {
+            bool output = false;
             try
             {
-                List<T> users = _loginClass.getUsers<T>(this);
+                List<T> users = await _loginClass.getUsers<T>(this);
                 foreach (var item in users)
                 {
-                    if (name == item._login && password == item._password)
+                    if (name == item.login && password == item.password)
                     {
-                        user = new T() { _FirstName = item._FirstName, _LastName = item._LastName, _login = item._login, _password = item._password };
+                        user = new T() { firstName = item.firstName, lastName = item.lastName, login = item.login, password = item.password };
                         IsLogged = true;
+                        output = true;
                     }
                 }
             }
@@ -68,6 +71,7 @@ namespace Biblioteka_2
                 se.Close();
                 openReconnect();
             }
+            return output;
         }
 
         private void openLogin()
@@ -96,7 +100,7 @@ namespace Biblioteka_2
             try
             {
                 SqlProfile = _sqlLogin.Login(ip, databaseName, userName, password);
-                _fileConfig.ConfigWrite(SqlProfile, "_config.txt");
+                _fileConfig.ConfigWrite(SqlProfile, configFileName);
                 openLogin();
                 return true;
             }

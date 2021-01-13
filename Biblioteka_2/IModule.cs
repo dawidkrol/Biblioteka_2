@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Biblioteka_2
 {
@@ -13,6 +14,6 @@ namespace Biblioteka_2
 
         bool UpdateSqlProfile(string ip, string databaseName, string userName, string password);
         void logout();
-        public void login<T>(string name, string password, object sender) where T : IUserProfile, new();
+        public Task<bool> login<T>(string name, string password, object sender) where T : IUserProfile, new();
     }
 }

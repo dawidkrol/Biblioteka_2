@@ -1,22 +1,22 @@
-﻿using Caliburn.Micro;
+﻿using Biblioteka_2.Data;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 
 namespace Biblioteka_2
 {
     public class BootStrapper : BootstrapperBase
+    {
+        SimpleContainer _container = new SimpleContainer();
+        public BootStrapper()
         {
-            SimpleContainer _container = new SimpleContainer();
-            public BootStrapper()
-            {
-                Initialize();
-            }
+            Initialize();
+        }
 
-            protected override void Configure()
-            {
-                _container.Instance(_container);
+        protected override void Configure()
+        {
+            _container.Instance(_container);
 
             _container
                 .Singleton<IEventAggregator, EventAggregator>()
@@ -26,28 +26,29 @@ namespace Biblioteka_2
                 .Singleton<IModule, Module>()
                 .Singleton<IConnectionLogin, SqlConnectionLogin>()
                 .Singleton<IFileConfig, FileConfig>()
-                .Singleton<ILogin, LoginTest>();
+                .Singleton<ILogin, Login>()
+                .Singleton<GetDeomoData>();
 
-            }
-
-            protected override void OnStartup(object sender, StartupEventArgs e)
-            {
-                DisplayRootViewFor<IModule>();
-            }
-
-            protected override object GetInstance(Type service, string key)
-            {
-                return _container.GetInstance(service, key);
-            }
-
-            protected override IEnumerable<object> GetAllInstances(Type service)
-            {
-                return _container.GetAllInstances(service);
-            }
-
-            protected override void BuildUp(object instance)
-            {
-                _container.BuildUp(instance);
-            }
         }
+
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+            DisplayRootViewFor<IModule>();
+        }
+
+        protected override object GetInstance(Type service, string key)
+        {
+            return _container.GetInstance(service, key);
+        }
+
+        protected override IEnumerable<object> GetAllInstances(Type service)
+        {
+            return _container.GetAllInstances(service);
+        }
+
+        protected override void BuildUp(object instance)
+        {
+            _container.BuildUp(instance);
+        }
+    }
 }

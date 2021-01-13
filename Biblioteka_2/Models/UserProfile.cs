@@ -2,19 +2,19 @@
 {
     public class UserProfile : IUserProfile
     {
-        public string _FirstName { get; set; }
-        public string _LastName { get; set; }
-        public string _password { get; set; }
-        public string _login { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string password { get; set; }
+        public string login { get; set; }
 
         public UserProfile() { }
 
-        public UserProfile(string FirstName, string LastName, string UserPassword, string login)
+        public UserProfile(string FirstName, string LastName, string UserPassword, string Login)
         {
-            _FirstName = FirstName;
-            _LastName = LastName;
-            _password = UserPassword;
-            _login = login;
+            firstName = FirstName;
+            lastName = LastName;
+            password = UserPassword;
+            login = Login;
         }
     }
 }

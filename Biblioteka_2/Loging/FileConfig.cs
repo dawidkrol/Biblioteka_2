@@ -22,16 +22,16 @@ namespace Biblioteka_2
         public void ConfigWrite(ISqlProfile sqlProfile, string path)
         {
             CreateConfigFile(path);
-            StreamWriter streamWriter = new StreamWriter("_config.txt");
+            StreamWriter streamWriter = new StreamWriter(path);
             streamWriter.Write($"{sqlProfile.name},{sqlProfile.password},{sqlProfile.ip},{sqlProfile.databaseName}");
             streamWriter.Close();
         }
 
-        public ISqlProfile GetInfoSQL()
+        public ISqlProfile GetInfoSQL(string path)
         {
             try
             {
-                StreamReader reader = new StreamReader("_config.txt");
+                StreamReader reader = new StreamReader(path);
                 string info = reader.ReadLine();
                 reader.Close();
                 string[] vs = info.Split(',');

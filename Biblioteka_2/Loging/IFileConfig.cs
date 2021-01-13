@@ -4,7 +4,7 @@
     {
         void ConfigWrite(ISqlProfile sqlProfile, string path);
         void CreateConfigFile(string path);
-        ISqlProfile GetInfoSQL();
-        bool fileEx(string v);
+        ISqlProfile GetInfoSQL(string path);
+        bool fileEx(string path);
     }
 }

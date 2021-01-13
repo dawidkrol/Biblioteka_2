@@ -24,13 +24,13 @@ namespace Biblioteka_2
             _module = module;
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
-            _module.login<UserProfile>(LoginName.Text, passw.Password, this);
-            if (_module.user != null)
+            bool logged = await _module.login<UserProfile>(LoginName.Text, passw.Password, this);
+            if (logged == true)
             {
                 main.Text = "Zalogowano";
-                this.Close();
+                Close();
             }
             else
             {
