@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Biblioteka_2.DemoData
 {
-    class availableBooks
+    public class AvailableBooks
     {
-        string ISBN { get; set; }
-        string tytuł { get; set; }
-        string wydawca { get; set; }
-        string kategoria { get; set; }
+        public string ISBN { get; set; }
+        public string Tytuł { get; set; }
+        public string Wydawca { get; set; }
+        public string Kategoria { get; set; }
+        public string Rok_wydania { get; set; }
     }
 }

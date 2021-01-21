@@ -7,6 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Gray">
-        <DataGrid x:Name="widoczek" Background="Transparent" ItemsSource="{Binding}" FontSize="15" IsReadOnly="True" Margin="2,0,0,0" ></DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="739*"></ColumnDefinition>
+            <ColumnDefinition Width="61*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"></RowDefinition>
+            <RowDefinition Height="389*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontWeight="Normal" FontStyle="Italic" FontFamily="Californian FB">Title</TextBlock>
+        <DataGrid Grid.Row="1" Grid.Column="0" x:Name="table" Background="Transparent" ItemsSource="{Binding}" FontSize="15" IsReadOnly="True" Margin="2,-3,0,0" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="{x:Null}" Click="handing">Oddane</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="buttOn" Grid.Column="1" Click="Button_Click"></Button>
     </Grid>
 </UserControl>

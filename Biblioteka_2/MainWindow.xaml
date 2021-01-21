@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Biblioteka_2.Controls"
-        mc:Ignorable="d" Height="600" Width="1080" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
+        mc:Ignorable="d" Height="700" Width="1600" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -29,21 +29,11 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FFDEDEDE">
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="500" Width="1005" Margin="0,0,0,1">
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="637" Width="1521" Margin="0,0,0,-26">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <ProgressBar Maximum="100" x:Name="progresBarUnder" Background="Transparent" Foreground="#FF953511" Grid.Row="1" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,-4">
-                <ProgressBar.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ProgressBar.RenderTransform>
-            </ProgressBar>
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="Transparent">
             <Grid.Effect>
@@ -103,20 +93,20 @@
                             <TextBlock Text="Ranking użytkowników" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60" x:Name="Lista_książek">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Library" Height="25" Width="25" Margin="10" Foreground="#FF953511"/>
                             <TextBlock Text="Lista książek" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60" x:Name="UserAdd">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="UserAdd" Height="25" Width="25" Margin="10" Foreground="#FF953511"/>
                             <TextBlock Text="Tworzenie użytkowników" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
-                <ProgressBar Orientation="Vertical" Maximum="100" x:Name="progresBarLeft" Background="Transparent" Height="70" Foreground="#FF953511" Grid.Row="1"></ProgressBar>
+                <ProgressBar Orientation="Vertical" Maximum="100" x:Name="progresBarLeft" Background="Transparent" Height="170" Foreground="#FF953511" Grid.Row="1"></ProgressBar>
             </StackPanel>
         </Grid>
     </Grid>

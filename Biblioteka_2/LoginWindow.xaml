@@ -7,17 +7,23 @@
         mc:Ignorable="d"
         Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="19*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF361600">
-            <TextBlock FontSize="20" x:Name="main" Text="Podaj dane do połączenia z serwerem sql" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+        <Grid Grid.Row="0" Background="#FF361600" Grid.ColumnSpan="2" Margin="0,0,1,46" Grid.RowSpan="2">
+            <TextBlock FontSize="20" x:Name="main" Text="Logowanie do bibioteka_2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
         </Grid>
-        <TextBox FontSize="20" Grid.Row="1" x:Name="LoginName" ToolTip="User name" VerticalContentAlignment="Center"></TextBox>
-        <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Row="2" ToolTip="Password" VerticalContentAlignment="Center"></PasswordBox>
-        <Button x:Name="Login" Content="Log in" FontSize="15" Grid.Row="3" FontWeight="Bold" Click="Login_Click" Background="#FF953511" Foreground="#FFF7F7F7" ></Button>
+        <TextBox FontSize="20" Grid.Column="1" Grid.Row="1" x:Name="LoginName" ToolTip="User name" VerticalContentAlignment="Center"></TextBox>
+        <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Column="1" Grid.Row="1" ToolTip="Password" VerticalContentAlignment="Center" Margin="0,46,0,0" Grid.RowSpan="2"></PasswordBox>
+        <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20">Login:</Label>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20">Hasło:</Label>
+        <Button x:Name="Login" Content="Log in" FontSize="15" Grid.Row="2" FontWeight="Bold" Click="Login_Click" Background="#FF953511" Foreground="#FFF7F7F7" Grid.ColumnSpan="2" Margin="0,47,1,0" Grid.RowSpan="2" ></Button>
     </Grid>
 </Window>

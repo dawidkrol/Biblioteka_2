@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Biblioteka_2.Controls.Books"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Biblioteka_2.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"></ColumnDefinition>
+            <ColumnDefinition Width="9*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"></RowDefinition>
+            <RowDefinition Height="389*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Column="0" x:Name="table" Background="Transparent" ItemsSource="{Binding}" FontSize="15" IsReadOnly="True" Margin="2,4,0,0" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="70" Background="{x:Null}" Click="usuń_książkę">Usuń</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="buttOn" Grid.Column="1" Click="dodaj_książke" Background="#FF858585" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontSize="36" FontFamily="Bodoni Bk BT">Dodaj książkę</Button>
+        <Grid Grid.Row="1" Grid.Column="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="29*"></ColumnDefinition>
+                <ColumnDefinition Width="43*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="71*"></RowDefinition>
+                <RowDefinition Height="35*"></RowDefinition>
+                <RowDefinition Height="35*"></RowDefinition>
+                <RowDefinition Height="35*"></RowDefinition>
+                <RowDefinition Height="35*"></RowDefinition>
+                <RowDefinition Height="35*"></RowDefinition>
+                <RowDefinition Height="39*"></RowDefinition>
+                <RowDefinition Height="76*"></RowDefinition>
+                <RowDefinition Height="27*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="24" Content="ISBN:" Height="42" Width="66" Margin="54,0,0,0" HorizontalContentAlignment="Right"/>
+            <Label Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="24" Content="Tytuł:" Height="42" Width="62" Margin="58,0,0,0"/>
+            <Label Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="24" Content="Rok Wydania:" Height="41" Width="148" Margin="-28,0,0,0"/>
+            <Label Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="24" Content="Wydawca:" Height="42" Width="112" Margin="8,0,0,0"/>
+            <Label Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="24" Content="Kategoria:" Height="42" Width="112" Margin="8,0,0,0"/>
+            <Label Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="24" Content="Autor:" Height="42" Width="112" Margin="8,0,0,0" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="isbn" Grid.Column="1" Grid.Row="1" FontSize="24" VerticalContentAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Center" Height="34" Width="180" HorizontalAlignment="Left"/>
+            <TextBox x:Name="tytul" Grid.Row="2" Grid.Column="1" FontSize="24" VerticalContentAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Center" Height="34" Width="180" HorizontalAlignment="Left"/>
+            <TextBox x:Name="rok_wydania" Grid.Row="3" Grid.Column="1" FontSize="24" VerticalContentAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Center" Height="33" Width="180" HorizontalAlignment="Left"/>
+            <TextBox x:Name="wydawca" Grid.Row="4" Grid.Column="1" FontSize="24" VerticalContentAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Center" Height="34" Width="180" HorizontalAlignment="Left"/>
+            <TextBox x:Name="kategoria" Grid.Row="5" Grid.Column="1" FontSize="24" VerticalContentAlignment="Center" Margin="0,0,10,0" VerticalAlignment="Center" Height="34" Width="180" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="autor" Grid.Row="6" Grid.Column="1" FontSize="20" Margin="1,2,0,3"  Width="180" Height="34" HorizontalAlignment="Left"  VerticalContentAlignment="Center" />
+            <Button Grid.Row="8" Grid.ColumnSpan="2" Click="NowyAutor">Dodaj nowego autora</Button>
+        </Grid>
+    </Grid>
+</UserControl>

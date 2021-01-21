@@ -66,16 +66,19 @@ namespace Biblioteka_2
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "delayed":
-                    usc = new delayed();
+                    usc = new delayed(_data,_module);
                     GridMain.Children.Add(usc);
-                    //var awaiter = _data.GetTable(_module.SqlProfile.connectionString.ToString()).GetAwaiter();
-                    //awaiter.OnCompleted(() =>
-                    //usc.DataContext = awaiter.GetResult());
-                    usc.DataContext = await _data.GetTable(_module.SqlProfile.connectionString.ToString());
+                    usc.DataContext = await _data.GetNotDelivered(_module.SqlProfile.connectionString.ToString(),false);
                     break;
-                case "ItemCreate":
-                    //usc = new UserControlCreate();
-                    //GridMain.Children.Add(usc);
+                case "UserAdd":
+                    usc = new NewUser(_module);
+                    usc.DataContext = await _data.GetReaders(_module.SqlProfile.connectionString.ToString());
+                    GridMain.Children.Add(usc);
+                    break;
+                case "Lista_książek":
+                    usc = new Books(_module);
+                    GridMain.Children.Add(usc);
+                    usc.DataContext = await _data.GetAvailableBooks(_module.SqlProfile.connectionString.ToString());
                     break;
                 default:
                     break;
@@ -94,7 +97,6 @@ namespace Biblioteka_2
         {
             this.Dispatcher.Invoke(() =>
             {
-                progresBarUnder.Value = e;
                 pogersBarUpper.Value = e;
                 progresBarLeft.Value = e;
                 if (e == 100)
