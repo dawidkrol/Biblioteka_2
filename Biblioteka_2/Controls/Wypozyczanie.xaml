@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Biblioteka_2.Controls.Wypozyczanie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Biblioteka_2.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"></RowDefinition>
+            <RowDefinition Height="41*"></RowDefinition>
+            <RowDefinition Height="394*"></RowDefinition>
+            <RowDefinition Height="55*"></RowDefinition>
+            <RowDefinition Height="55*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+            <ColumnDefinition Width="100*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift" Height="96" Width="692" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1">Nowe wypożyczenie :</Label>
+        <Label VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" Height="50" Margin="0,50,0,0" Width="259" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Użytkownik :</Label>
+        <Label Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" Height="50" Margin="0,50,0,0" Width="174" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Książka :</Label>
+        <Label Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="22" FontFamily="Calibri" Height="68" Width="283" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="200,0,0,0">Data oddania:</Label>
+        <DataGrid BorderThickness="3" IsReadOnly="True" x:Name="users" Grid.Row="2" Grid.Column="0" SelectionMode="Single" Margin="20,0,0,0" FontSize="16">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF0000"/>
+                <SolidColorBrush 
+            x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
+                     Color="#FF953511"/>
+            </DataGrid.Resources>
+        </DataGrid>
+        <DataGrid BorderThickness="3"  IsReadOnly="True"  x:Name="books" Grid.Row="2" Grid.Column="2" SelectionMode="Single" Margin="0,0,20,0" FontSize="16">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF0000"/>
+                <SolidColorBrush 
+            x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
+                     Color="#FF953511"/>
+            </DataGrid.Resources>
+        </DataGrid>
+        <DatePicker x:Name="dataOddania" BorderThickness="3" BorderBrush="Transparent" IsTodayHighlighted="False" Focusable="True" Grid.Row="3" Grid.Column="2" Margin="0,0,0,0" Width="180"  HorizontalAlignment="Left"  VerticalContentAlignment="Center" FirstDayOfWeek="Monday" SelectedDateFormat="Short" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Stretch"/>
+        <Button x:Name="dodaj" Grid.Row ="4" Grid.ColumnSpan="3" Margin="0,2,0,0" Content="Dodaj" FontSize="36" Click="dodaj_Click"/>
+    </Grid>
+</UserControl>

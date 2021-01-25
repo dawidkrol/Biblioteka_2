@@ -24,6 +24,19 @@ namespace Biblioteka_2.Data
             Dziecko,
             Dorosły
         }
+        public void NewRental(string connectionString,AvailableBooks book,ReaderModel reader,DateTime time)
+        {
+            var p = new
+            {
+                isbn = book.ISBN,
+                Nr_Czytelnika = reader.Nr_czytelnika,
+                spodziewanaDataZwrotu = time
+            };
+            using (IDbConnection cnn = new SqlConnection(connectionString))
+            {
+                cnn.Execute("[dbo].[SpNewRental]", p, commandType: CommandType.StoredProcedure);
+            }
+        }
         public void NewAutor(string connectionString,string name,string lastname)
         {
             var p = new
@@ -60,6 +73,18 @@ namespace Biblioteka_2.Data
             using(IDbConnection cnn = new SqlConnection(connectionString))
             {
                 output = cnn.Query<SimlpeAthor>(sql).ToList();
+            }
+            return output;
+        }
+
+        public List<Categories> ListOfCategories(string connectionString)
+        {
+            List<Categories> output;
+            string sql = "select * from GetCategories";
+
+            using (IDbConnection cnn = new SqlConnection(connectionString))
+            {
+                output = cnn.Query<Categories>(sql).ToList();
             }
             return output;
         }
@@ -159,10 +184,10 @@ namespace Biblioteka_2.Data
         public string thisIsData(IProgress<int> progress)
         {
             string outout = null;
-            for(int i = 0; i <= 100; i++)
+            for(int i = 0; i <= 500; i++)
             {
-                Thread.Sleep(5);
-                int temp = (i * 100) / 100;
+                Thread.Sleep(1);
+                int temp = (i * 100) / 500;
                 progress.Report(temp);
             }
             return outout;

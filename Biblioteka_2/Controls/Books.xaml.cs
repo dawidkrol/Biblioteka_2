@@ -16,20 +16,29 @@ using System.Windows.Shapes;
 
 namespace Biblioteka_2.Controls
 {
-    /// <summary>
-    /// Interaction logic for Books.xaml
-    /// </summary>
     public partial class Books : UserControl
     {
         IModule _module;
         GetDeomoData _data;
         List<SimlpeAthor> autors;
+        List<Categories> categories;
         public Books(IModule module)
         {
             _data = new GetDeomoData();
             _module = module;
             InitializeComponent();
             listAuthors();
+            listCategories();
+        }
+        public void listCategories()
+        {
+            categories = _data.ListOfCategories(_module.SqlProfile.connectionString.ToString());
+            string[] vs = new string[categories.Count];
+            for (int i = 0; i < vs.Length; i++)
+            {
+                vs[i] = categories[i].nazwa_kategorii;
+            }
+            kategoria.ItemsSource = vs;
         }
         public void listAuthors()
         {
@@ -48,7 +57,6 @@ namespace Biblioteka_2.Controls
             {
                 AvailableBooks book = new AvailableBooks();
                 book.ISBN = isbn.Text;
-                book.Kategoria = kategoria.Text;
                 book.Rok_wydania = rok_wydania.Text;
                 book.Wydawca = wydawca.Text;
                 book.Tytuł = tytul.Text;
@@ -61,6 +69,16 @@ namespace Biblioteka_2.Controls
                     if (x.imie_nazwisko == author.imie_nazwisko)
                         author.Nr_autora = x.Nr_autora;
                 });
+
+                categories.ForEach(x =>
+                {
+                    if(x.nazwa_kategorii == kategoria.SelectedItem?.ToString())
+                    {
+                        book.Kategoria = x.id_kategorii.ToString();
+                    }
+                });
+
+
                 _data.NewBook(_module.SqlProfile.connectionString.ToString(), book, author);
             }
             catch

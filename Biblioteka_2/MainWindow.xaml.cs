@@ -80,6 +80,10 @@ namespace Biblioteka_2
                     GridMain.Children.Add(usc);
                     usc.DataContext = await _data.GetAvailableBooks(_module.SqlProfile.connectionString.ToString());
                     break;
+                case "ItemCreate":
+                    usc = new Wypozyczanie(_data,_module);
+                    GridMain.Children.Add(usc);
+                    break;
                 default:
                     break;
             }
