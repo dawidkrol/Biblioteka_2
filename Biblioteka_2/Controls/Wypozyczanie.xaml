@@ -19,7 +19,7 @@
             <ColumnDefinition Width="7*"></ColumnDefinition>
             <ColumnDefinition Width="100*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift" Height="96" Width="692" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1">Nowe wypożyczenie :</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift" Height="96" Width="692" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Grid.ColumnSpan="3">Nowe wypożyczenie :</Label>
         <Label VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" Height="50" Margin="0,50,0,0" Width="259" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Użytkownik :</Label>
         <Label Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" Height="50" Margin="0,50,0,0" Width="174" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Książka :</Label>
         <Label Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="22" FontFamily="Calibri" Height="68" Width="283" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="200,0,0,0">Data oddania:</Label>

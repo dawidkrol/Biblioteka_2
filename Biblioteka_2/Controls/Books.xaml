@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Biblioteka_2.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Gray">
+
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*"></ColumnDefinition>
             <ColumnDefinition Width="9*"></ColumnDefinition>

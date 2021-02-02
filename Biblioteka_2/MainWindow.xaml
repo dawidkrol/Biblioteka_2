@@ -29,10 +29,10 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FFDEDEDE">
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="637" Width="1521" Margin="0,0,0,-26">
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="611" Width="1521" Margin="0,0,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition Height="0*"></RowDefinition>
             </Grid.RowDefinitions>
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="Transparent">
@@ -87,10 +87,10 @@
                             <TextBlock Text="Nowe wypożyczenie" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="stats" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Ticket" Height="25" Width="25" Margin="10" Foreground="#FF953511"/>
-                            <TextBlock Text="Ranking użytkowników" VerticalAlignment="Center"  Margin="20 10"/>
+                            <TextBlock Text="Statystyki" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60" x:Name="Lista_książek">

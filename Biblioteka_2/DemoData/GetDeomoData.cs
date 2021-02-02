@@ -24,6 +24,16 @@ namespace Biblioteka_2.Data
             Dziecko,
             Dorosły
         }
+        public async Task<List<Stats>> GetStats(string connectionString)
+        {
+            List<Stats> _output;
+            string sql = @"select * from [dbo].[RentalsStats]()";
+            using (IDbConnection cnn = new SqlConnection(connectionString))
+            {
+                _output = cnn.QueryAsync<Stats>(sql).GetAwaiter().GetResult().ToList();
+            }
+            return _output;
+        }
         public void NewRental(string connectionString,AvailableBooks book,ReaderModel reader,DateTime time)
         {
             var p = new

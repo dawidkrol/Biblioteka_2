@@ -75,7 +75,7 @@ namespace Biblioteka_2.Controls
             catch
             {
                 books.BorderBrush = Brushes.Red;
-                books.BorderBrush = Brushes.Red;
+                users.BorderBrush = Brushes.Red;
                 dataOddania.BorderBrush = Brushes.Red;
             }
         }

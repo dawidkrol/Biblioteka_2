@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Menu = Biblioteka_2.Controls.Menu;
 
 namespace Biblioteka_2
 {
@@ -59,7 +60,7 @@ namespace Biblioteka_2
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
 
-        private async void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public async void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserControl usc = null;
             GridMain.Children.Clear();
@@ -69,6 +70,10 @@ namespace Biblioteka_2
                     usc = new delayed(_data,_module);
                     GridMain.Children.Add(usc);
                     usc.DataContext = await _data.GetNotDelivered(_module.SqlProfile.connectionString.ToString(),false);
+                    break;
+                case "stats":
+                    usc = new stats(await _data.GetStats(_module.SqlProfile.connectionString.ToString()));
+                    GridMain.Children.Add(usc);
                     break;
                 case "UserAdd":
                     usc = new NewUser(_module);
