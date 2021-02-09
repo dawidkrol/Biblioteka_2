@@ -2,17 +2,11 @@
 using Biblioteka_2.DemoData;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Biblioteka_2.Controls
 {
@@ -118,6 +112,13 @@ namespace Biblioteka_2.Controls
             rok_wydania.Text = null;
             wydawca.Text = null;
             kategoria.Text = null;
+        }
+
+        private async void fBooks_KeyUp(object sender, KeyEventArgs e)
+        {
+            var filter = await _data.GetAvailableBooks(_module.SqlProfile.connectionString.ToString());
+            var filtered = filter.Where(x => (x.Tytuł.ToLowerInvariant().StartsWith(fBooks.Text.ToLowerInvariant()) || x.Wydawca.ToLowerInvariant().StartsWith(fBooks.Text.ToLowerInvariant())));
+            DataContext = filtered;
         }
     }
 }

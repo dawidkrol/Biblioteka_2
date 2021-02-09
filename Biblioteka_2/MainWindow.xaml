@@ -34,8 +34,9 @@
                 <RowDefinition/>
                 <RowDefinition Height="0*"></RowDefinition>
             </Grid.RowDefinitions>
+
         </Grid>
-        <Grid Height="60" VerticalAlignment="Top" Background="Transparent">
+        <Grid Height="60" VerticalAlignment="Top" Background="Transparent" Margin="0,0,-3,0">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>

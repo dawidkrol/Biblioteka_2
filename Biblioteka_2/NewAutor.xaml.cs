@@ -34,14 +34,21 @@ namespace Biblioteka_2
         {
             try
             {
-                _data.NewAutor(_module.SqlProfile.connectionString.ToString(), imie.Text, nazwisko.Text);
+                if (!(string.IsNullOrWhiteSpace(imie.Text) && string.IsNullOrWhiteSpace(nazwisko.Text)))
+                {
+                    _data.NewAutor(_module.SqlProfile.connectionString.ToString(), imie.Text, nazwisko.Text);
+                    _book.listAuthors();
+                    this.Close();
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
             catch
             {
                 buttOn.Background = Brushes.DarkRed;
             }
-            _book.listAuthors();
-            this.Close();
         }
     }
 }

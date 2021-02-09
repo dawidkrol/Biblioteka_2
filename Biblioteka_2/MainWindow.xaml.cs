@@ -1,6 +1,7 @@
 ﻿using Biblioteka_2.Controls;
 using Biblioteka_2.Data;
 using Biblioteka_2.DemoData;
+using Biblioteka_2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace Biblioteka_2
 
         private void allowShow(object sender, PropertyChangedEventArgs e)
         {
-            IModule module = (Module)sender;
+            IModule module = (ModuleViewModel)sender;
             if (module.IsLogged == true)
             {
                 this.Visibility = Visibility.Visible;
@@ -112,6 +113,7 @@ namespace Biblioteka_2
                 {
                     title.Visibility = Visibility.Visible;
                     LogoutPanel.Visibility = Visibility.Visible;
+                    //BlinkingLogo();
                 }
                 else
                 {

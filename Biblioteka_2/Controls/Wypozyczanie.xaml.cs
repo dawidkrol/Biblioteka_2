@@ -1,17 +1,11 @@
 ﻿using Biblioteka_2.Data;
 using Biblioteka_2.DemoData;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Biblioteka_2.Controls
 {
@@ -68,9 +62,15 @@ namespace Biblioteka_2.Controls
                 dataOddania.BorderBrush = Brushes.Transparent;
                 dataOddania.BorderBrush = Brushes.Transparent;
 
+                fUser.Text = null;
+                fBook.Text = null;
+
                 users.SelectedItem = null;
                 books.SelectedItem = null;
                 dataOddania.SelectedDate = null;
+
+                BooksList();
+                UsersList();
             }
             catch
             {
@@ -78,6 +78,20 @@ namespace Biblioteka_2.Controls
                 users.BorderBrush = Brushes.Red;
                 dataOddania.BorderBrush = Brushes.Red;
             }
+        }
+
+        private async void fUser_KeyUp(object sender, KeyEventArgs e)
+        {
+            var filter = await _data.GetReaders(_module.SqlProfile.connectionString.ToString());
+            var filtered = filter.Where(x => (x.Imię.ToLowerInvariant().StartsWith(fUser.Text.ToLowerInvariant()) || x.Nazwisko.ToLowerInvariant().StartsWith(fUser.Text.ToLowerInvariant())));
+            users.ItemsSource = filtered;
+        }
+
+        private async void fBook_KeyUp(object sender, KeyEventArgs e)
+        {
+            var filter = await _data.GetAvailableBooks(_module.SqlProfile.connectionString.ToString());
+            var filtered = filter.Where(x => (x.Tytuł.ToLowerInvariant().StartsWith(fBook.Text.ToLowerInvariant()) || x.Wydawca.ToLowerInvariant().StartsWith(fBook.Text.ToLowerInvariant())));
+            books.ItemsSource = filtered;
         }
     }
 }

@@ -1,17 +1,11 @@
 ﻿using Biblioteka_2.Data;
 using Biblioteka_2.DemoData;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Biblioteka_2.Controls
 {
@@ -27,18 +21,27 @@ namespace Biblioteka_2.Controls
             InitializeComponent();
             _module = module;
             data = new GetDeomoData();
+            RefereschData();
             tytuł.ItemsSource = Enum.GetValues(typeof(GetDeomoData.Tytul));
             profil.ItemsSource = Enum.GetValues(typeof(GetDeomoData.Profil));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ReaderModel model = new ReaderModel();
             try
             {
-                ReaderModel model = new ReaderModel();
                 model.Imię = string.IsNullOrEmpty(oplata.Text) ? null : imię.Text;
                 model.Nazwisko = string.IsNullOrEmpty(oplata.Text) ? null : nazwisko.Text;
-                model.Tytuł = tytuł.SelectedItem.ToString() ?? null;
+                if(string.IsNullOrWhiteSpace(tytuł.SelectedItem?.ToString()))
+                {
+                    model.Tytuł = " ";
+                    throw new Exception();
+                }
+                else
+                {
+                    model.Tytuł = tytuł.SelectedItem.ToString();
+                }
                 model.Telefon = telefon.Text;
                 model.Adres = adres.Text;
                 model.Email = email.Text;
@@ -61,6 +64,7 @@ namespace Biblioteka_2.Controls
                         break;
                 }
                 data.AddReader(_module.SqlProfile.connectionString.ToString(), model);
+                buttOn.Background = Brushes.Gray;
             }
             catch(Exception)
             {
@@ -94,6 +98,13 @@ namespace Biblioteka_2.Controls
         private async void RefereschData()
         {
             DataContext = await data.GetReaders(_module.SqlProfile.connectionString.ToString());
+        }
+
+        private async void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+           var dataf = await data.GetReaders(_module.SqlProfile.connectionString.ToString());
+            var filtered = dataf.Where(x => (x.Imię.ToLowerInvariant().StartsWith(textBox1.Text.ToLowerInvariant()) || x.Nazwisko.ToLowerInvariant().StartsWith(textBox1.Text.ToLowerInvariant())));
+            this.DataContext = filtered;
         }
     }
 }

@@ -13,10 +13,13 @@
             <ColumnDefinition Width="9*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="61*"></RowDefinition>
+            <RowDefinition Height="31*"></RowDefinition>
+            <RowDefinition Height="31*"></RowDefinition>
             <RowDefinition Height="389*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid SelectionMode="Single" Grid.Column="0" x:Name="table" Background="Transparent" ItemsSource="{Binding}" FontSize="15" IsReadOnly="True" Margin="2,4,0,0" Grid.RowSpan="2">
+        
+        <TextBox x:Name="fBooks" Height="22" KeyUp="fBooks_KeyUp" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" Margin="2,0,0,0" Padding="4,0,0,0" />
+        <DataGrid SelectionMode="Single" Grid.Column="0" x:Name="table" Background="Transparent" ItemsSource="{Binding}" FontSize="15" IsReadOnly="True" Margin="2,1,0,0" Grid.RowSpan="3" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
@@ -27,8 +30,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="buttOn" Grid.Column="1" Click="dodaj_książke" Background="#FF858585" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontSize="36" FontFamily="Bodoni Bk BT">Dodaj książkę</Button>
-        <Grid Grid.Row="1" Grid.Column="1" Background="White">
+        <Button x:Name="buttOn" Grid.RowSpan="2" Grid.Column="1" Click="dodaj_książke" Background="#FF858585" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontSize="36" FontFamily="Bodoni Bk BT">Dodaj książkę</Button>
+        <Grid Grid.Row="2" Grid.Column="1" Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="29*"></ColumnDefinition>
                 <ColumnDefinition Width="43*"></ColumnDefinition>

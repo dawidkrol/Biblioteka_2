@@ -20,9 +20,27 @@
             <ColumnDefinition Width="100*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift" Height="96" Width="692" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Grid.ColumnSpan="3">Nowe wypożyczenie :</Label>
-        <Label VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" Height="50" Margin="0,50,0,0" Width="259" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Użytkownik :</Label>
-        <Label Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" Height="50" Margin="0,50,0,0" Width="174" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Książka :</Label>
         <Label Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="22" FontFamily="Calibri" Height="68" Width="283" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="200,0,0,0">Data oddania:</Label>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.RowSpan="3">Użytkownik :</Label>
+            <TextBox Grid.Column="1" x:Name="fUser"  Height="22" KeyUp="fUser_KeyUp" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="24" FontFamily="Calibri" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Książka :</Label>
+            <TextBox Grid.Column="1" x:Name="fBook" Height="22" KeyUp="fBook_KeyUp" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" />
+        </Grid>
+
         <DataGrid BorderThickness="3" IsReadOnly="True" x:Name="users" Grid.Row="2" Grid.Column="0" SelectionMode="Single" Margin="20,0,0,0" FontSize="16">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 

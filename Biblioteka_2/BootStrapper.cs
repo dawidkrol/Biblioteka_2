@@ -1,4 +1,5 @@
 ﻿using Biblioteka_2.Data;
+using Biblioteka_2.ViewModels;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Biblioteka_2
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<ISqlProfile, SqlProfile>()
                 .Singleton<IUserProfile, UserProfile>()
-                .Singleton<IModule, Module>()
+                .Singleton<IModule, ModuleViewModel>()
                 .Singleton<IConnectionLogin, SqlConnectionLogin>()
                 .Singleton<IFileConfig, FileConfig>()
                 .Singleton<ILogin, Login>()

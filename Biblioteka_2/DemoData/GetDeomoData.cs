@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -158,7 +157,7 @@ namespace Biblioteka_2.Data
         public async Task<List<ReaderModel>> GetReaders(string connectionString)
         {
             List<ReaderModel> output;
-            string sql = "select * from Czytelnicy";
+            string sql = "select * from [dbo].[GetCzytelnicy]";
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {

@@ -34,7 +34,7 @@ namespace Biblioteka_2
             }
             else
             {
-                main.Text = "!!!BŁĄD!!!\nPodaj dane do połączenia z serwerem sql";
+                main.Text = "Niepoprawne dane";
             }
         }
 

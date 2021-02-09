@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Biblioteka_2
+namespace Biblioteka_2.ViewModels
 {
-    public class Module : IModule
+    class ModuleViewModel : IModule
     {
         ILogin _loginClass;
         IFileConfig _fileConfig;
@@ -31,7 +33,7 @@ namespace Biblioteka_2
             }
         }
 
-        public Module(IConnectionLogin sqlLogin, IFileConfig fileConfig, ILogin login)
+        public ModuleViewModel(IConnectionLogin sqlLogin, IFileConfig fileConfig, ILogin login)
         {
             _loginClass = login;
             _fileConfig = fileConfig;

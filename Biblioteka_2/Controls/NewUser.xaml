@@ -15,7 +15,7 @@
             <ColumnDefinition Width="72*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -48,8 +48,7 @@
         <Label Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" Padding="5,5,33,5" FontSize="22">Email:</Label>
         <Label Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" Padding="5,5,33,5" FontSize="22" Margin="0,36,0,0" Grid.RowSpan="2">Opłata:</Label>
         <Label Grid.Column="1" Grid.Row="9" HorizontalContentAlignment="Right" Padding="5,5,33,5" FontSize="22" Margin="0,0,0,36" Grid.RowSpan="2">Profil:</Label>
-
-        <DataGrid Margin="0,0,0,-3" Grid.RowSpan="12" ItemsSource="{Binding}">
+        <DataGrid Margin="0,0,0,0" Grid.RowSpan="11" ItemsSource="{Binding}" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
@@ -60,5 +59,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox x:Name="textBox1" Height="22" KeyUp="textBox1_KeyUp" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" />
     </Grid>
 </UserControl>
