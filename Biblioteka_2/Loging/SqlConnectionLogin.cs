@@ -21,7 +21,7 @@ namespace Biblioteka_2
                 try
                 {
                     cnn.Open();
-                    string curr = "KsiążkiAutorzy,Users,Autorzy,sysdiagrams,Czytelnicy,Wypożyczenia,GetCzytelnicy,GetCategories,Kategorie,Książki,";
+                    string[] curr = { "KsiążkiAutorzy","Users", "Autorzy", "Czytelnicy", "Wypożyczenia", "GetCzytelnicy","GetCategories", "Kategorie", "Książki"};
                     DataTable schema = cnn.GetSchema("Tables");
                     StringBuilder s = new StringBuilder();
                     foreach (DataRow row in schema.Rows)
@@ -30,9 +30,13 @@ namespace Biblioteka_2
                         s.Append(",");
                     }
                     //Console.WriteLine(s);
-                    if(s.ToString() != curr)
+
+                    foreach(var a in curr)
                     {
-                        throw new Exception();
+                        if(!(s.ToString().Contains(a)))
+                        {
+                            throw new Exception();
+                        }
                     }
                     ISqlProfile profile = new SqlProfile(userName, password, databaseName, ip);
                     return profile;
