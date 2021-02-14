@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka_2.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
@@ -15,7 +16,6 @@ namespace Biblioteka_2.ViewModels
         IConnectionLogin _sqlLogin;
         MainWindow _mainWindow;
         public event PropertyChangedEventHandler LoginProperty;
-
         public string configFileName { get; } = "_config.txt";
         public IUserProfile user { get; private set; }
         public ISqlProfile SqlProfile { get; private set; }
@@ -39,6 +39,7 @@ namespace Biblioteka_2.ViewModels
             _fileConfig = fileConfig;
             _sqlLogin = sqlLogin;
             _mainWindow = new MainWindow(this);
+            _mainWindow.Closing += _mainWindow_Closing;
             if (_fileConfig.fileEx(configFileName))
             {
                 SqlProfile = _fileConfig.GetInfoSQL(configFileName);
@@ -48,6 +49,11 @@ namespace Biblioteka_2.ViewModels
             {
                 openReconnect();
             }
+        }
+
+        private void _mainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
 
         public async Task<bool> login<T>(string name, string password, object sender) where T : IUserProfile, new()

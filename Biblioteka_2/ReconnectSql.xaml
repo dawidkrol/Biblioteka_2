@@ -5,31 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka_2"
         mc:Ignorable="d"
-        Title="Login" Height="250" Width="400" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+        Title="Login" Height="350" Width="600" ResizeMode="NoResize" FlowDirection="LeftToRight" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <Grid Background="AliceBlue">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="163*"></ColumnDefinition>
-            <ColumnDefinition Width="237*"></ColumnDefinition>
+            <ColumnDefinition Width="21*"></ColumnDefinition>
+            <ColumnDefinition Width="29*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#FF361600" Grid.ColumnSpan="2" Margin="0,0,1,0"></Grid>
-        <TextBlock FontSize="20" Grid.Row="1" x:Name="title_sql" Text="Wprowadź dane" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.495,0.587" Grid.ColumnSpan="2" Margin="127,27,0,0" Height="27"></TextBlock>
-        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="23" FontSize="11">IP serwera bazy danych:</Label>
-        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="23" FontSize="11">Nazwa bazy: </Label>
-        <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="23" FontSize="10">Nazwa użytkownika bazy danych: </Label>
-        <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="23" FontSize="10">Hasło użytkownika bazy danych: </Label>
-        <TextBox Grid.Column="1" Grid.Row="2" x:Name="SqlIp" ToolTip="IP" HorizontalContentAlignment="Left" Foreground="Black" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="18"/>
-        <TextBox Grid.Column="1" Grid.Row="3" x:Name="DBName" ToolTip="Databse name" HorizontalContentAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="18"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="4" x:Name="UserName" ToolTip="User name" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="18"></TextBox>
-        <PasswordBox Grid.Column="1" x:Name="password" PasswordChar="*" Grid.Row="5" ToolTip="Password" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="18"></PasswordBox>
-        <Button x:Name="Connect" Content="Connect" FontSize="15" Grid.Row="6" Click="Connect_Click" FontWeight="Bold" Background="#FF953511" Foreground="White" Grid.ColumnSpan="2" Margin="0,0,1,0"></Button>
+        <Grid Grid.Row="0" Background="#FF361600" Grid.ColumnSpan="2" Margin="0,0,1,83" Grid.RowSpan="2"></Grid>
+        <TextBlock FontSize="24" Grid.Row="1" x:Name="title_sql" Text="Wprowadź dane" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="31" Width="172"/>
+        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="16" Height="31">IP serwera bazy danych:</Label>
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="16" Height="31">Nazwa bazy:</Label>
+        <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="16" Height="31">Nazwa użytkownika bazy danych:</Label>
+        <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="16" Height="31">Hasło użytkownika bazy danych:</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" x:Name="SqlIp" ToolTip="IP" HorizontalContentAlignment="Left" Foreground="Black" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="28" Margin="0,0,80,0"/>
+        <TextBox Grid.Column="1" Grid.Row="3" x:Name="DBName" ToolTip="Databse name" HorizontalContentAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="28" Margin="0,0,80,0"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="UserName" ToolTip="User name" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="28" Margin="0,0,80,0"></TextBox>
+        <PasswordBox Grid.Column="1" x:Name="password" PasswordChar="*" Grid.Row="5" ToolTip="Password" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="28" Margin="0,0,80,0"></PasswordBox>
+        <Button x:Name="Connect" Content="Connect" FontSize="15" Grid.Row="5" Click="Connect_Click" FontWeight="Bold" Background="#FF953511" Foreground="White" Grid.ColumnSpan="2" Margin="0,41,1,0" Grid.RowSpan="2"></Button>
     </Grid>
 </Window>

@@ -21,6 +21,7 @@ namespace Biblioteka_2.Controls
             _data = data;
             _module = module;
             InitializeComponent();
+            DataContext = _data.GetNotDelivered(_module.SqlProfile.connectionString.ToString(), false);
             title.Text = ((stan)stan.Nieoddane).ToString().ToUpperInvariant();
             buttOn.Content = ((stan)stan.Opóźnienie).ToString().ToUpperInvariant();
         }

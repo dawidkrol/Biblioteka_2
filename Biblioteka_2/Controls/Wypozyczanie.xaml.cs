@@ -59,7 +59,7 @@ namespace Biblioteka_2.Controls
                 _data.NewRental(_module.SqlProfile.connectionString.ToString(), book, reader, time);
 
                 books.BorderBrush = Brushes.Transparent;
-                dataOddania.BorderBrush = Brushes.Transparent;
+                users.BorderBrush = Brushes.Transparent;
                 dataOddania.BorderBrush = Brushes.Transparent;
 
                 fUser.Text = null;
@@ -71,6 +71,10 @@ namespace Biblioteka_2.Controls
 
                 BooksList();
                 UsersList();
+            }
+            catch(System.Data.SqlClient.SqlException)
+            {
+                dataOddania.BorderBrush = Brushes.Red;
             }
             catch
             {

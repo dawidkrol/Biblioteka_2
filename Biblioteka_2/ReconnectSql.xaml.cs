@@ -31,7 +31,7 @@ namespace Biblioteka_2
 
         private void Window_Closed(object sender, System.EventArgs e)
         {
-            if(isConnected == false)
+            if (isConnected == false)
             {
                 App.Current.Shutdown();
             }

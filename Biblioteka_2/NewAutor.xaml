@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka_2"
         mc:Ignorable="d"
-        Title="NewAutor" Height="250" Width="600" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" Topmost="True">
+        Title="Nowy autor" Height="250" Width="600" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid FlowDirection="LeftToRight">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="27*"></ColumnDefinition>
             <ColumnDefinition Width="73*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" FontSize="26">Nowy użytkownik</Label>
+        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" FontSize="26">Nowy autor</Label>
         <Label Grid.Row="1" FontSize="24" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Imię:</Label>
         <Label Grid.Row="2" FontSize="24" HorizontalContentAlignment="Right" VerticalContentAlignment="Stretch" Margin="-9,0,5,0" VerticalAlignment="Center" Height="52">Nazwisko:</Label>
         <TextBox x:Name="imie" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="28" UseLayoutRounding="True" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True" Margin="20,0,20,0"></TextBox>

@@ -177,7 +177,7 @@ namespace Biblioteka_2.Data
                 Parallel.ForEach(temp, (item) =>
                 {
                     item.Autor = $"{item.Imie_autora} {item.Nazwisko_autora}";
-                    if (DateTime.Now > item.Spodziewana_Data_Zwrotu)
+                    if (DateTime.Now >= item.Spodziewana_Data_Zwrotu)
                     {
                         float oplata = ((DateTime.Now - item.Spodziewana_Data_Zwrotu).Days) * 0.3f;
                         item.oplata = ((float)Math.Round(oplata * 100f) / 100f).ToString("C2");

@@ -18,7 +18,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="#FF361600" Grid.ColumnSpan="2" Margin="0,0,1,46" Grid.RowSpan="2">
-            <TextBlock FontSize="20" x:Name="main" Text="Logowanie do bibioteka_2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+            <TextBlock FontSize="20" x:Name="main" Text="Logowanie do bibioteka_2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
         </Grid>
         <TextBox FontSize="20" Grid.Column="1" Grid.Row="1" x:Name="LoginName" ToolTip="User name" VerticalContentAlignment="Center"></TextBox>
         <PasswordBox FontSize="20" x:Name="passw" PasswordChar="*" Grid.Column="1" Grid.Row="1" ToolTip="Password" VerticalContentAlignment="Center" Margin="0,46,0,0" Grid.RowSpan="2"></PasswordBox>

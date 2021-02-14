@@ -1,21 +1,14 @@
 ﻿using Biblioteka_2.Controls;
 using Biblioteka_2.Data;
-using Biblioteka_2.DemoData;
 using Biblioteka_2.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Menu = Biblioteka_2.Controls.Menu;
 
 namespace Biblioteka_2
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         IModule _module;
@@ -68,9 +61,9 @@ namespace Biblioteka_2
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "delayed":
-                    usc = new delayed(_data,_module);
+                    usc = new delayed(_data, _module);
                     GridMain.Children.Add(usc);
-                    usc.DataContext = await _data.GetNotDelivered(_module.SqlProfile.connectionString.ToString(),false);
+                    usc.DataContext = await _data.GetNotDelivered(_module.SqlProfile.connectionString.ToString(), false);
                     break;
                 case "stats":
                     usc = new stats(await _data.GetStats(_module.SqlProfile.connectionString.ToString()));
@@ -87,7 +80,7 @@ namespace Biblioteka_2
                     usc.DataContext = await _data.GetAvailableBooks(_module.SqlProfile.connectionString.ToString());
                     break;
                 case "ItemCreate":
-                    usc = new Wypozyczanie(_data,_module);
+                    usc = new Wypozyczanie(_data, _module);
                     GridMain.Children.Add(usc);
                     break;
                 default:
