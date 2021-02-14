@@ -21,7 +21,7 @@ namespace Biblioteka_2
                 try
                 {
                     cnn.Open();
-                    string curr = "RentalsView,Książki,KsiążkiAutorzy,Users,Autorzy,sysdiagrams,Czytelnicy,Wypożyczenia,Kategorie,GetCzytelnicy,GetCategories,";
+                    string curr = "KsiążkiAutorzy,Users,Autorzy,sysdiagrams,Czytelnicy,Wypożyczenia,GetCzytelnicy,GetCategories,Kategorie,Książki,";
                     DataTable schema = cnn.GetSchema("Tables");
                     StringBuilder s = new StringBuilder();
                     foreach (DataRow row in schema.Rows)
