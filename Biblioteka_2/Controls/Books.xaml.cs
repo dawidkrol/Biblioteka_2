@@ -50,10 +50,10 @@ namespace Biblioteka_2.Controls
             try
             {
                 AvailableBooks book = new AvailableBooks();
-                book.ISBN = isbn.Text;
+                book.ISBN = string.IsNullOrWhiteSpace(isbn.Text) ? throw new Exception() : isbn.Text;
                 book.Rok_wydania = rok_wydania.Text;
                 book.Wydawca = wydawca.Text;
-                book.Tytuł = tytul.Text;
+                book.Tytuł = string.IsNullOrWhiteSpace(tytul.Text) ? throw new Exception() : tytul.Text;
 
                 SimlpeAthor author = new SimlpeAthor();
 

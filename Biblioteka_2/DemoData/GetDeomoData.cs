@@ -104,7 +104,7 @@ namespace Biblioteka_2.Data
                 data = DateTime.Now,
                 isbn = delayed.ISBN,
                 data_Wypozyczenia = delayed.Data_Wypożyczenia,
-                oplata = Convert.ToDecimal(delayed.oplata.Substring(0, (delayed.oplata.Length - 2)))
+                oplata = string.IsNullOrWhiteSpace(delayed.oplata?.ToString()) ? 0 : Convert.ToDecimal(delayed.oplata.Substring(0, (delayed.oplata.Length - 2)))
             };
             using (IDbConnection cnn = new SqlConnection(connectionString))
             {
@@ -113,10 +113,10 @@ namespace Biblioteka_2.Data
         }
         public async void delUser(string connectionString, ReaderModel reader)
         {
-            var p = new
-            {
-                Nr_czytelnika = reader.Nr_czytelnika,
-            };
+                var p = new
+                {
+                    Nr_czytelnika = reader.Nr_czytelnika,
+                };
             using (IDbConnection cnn = new SqlConnection(connectionString))
             {
                 cnn.Execute("[dbo].[SpDelUser]", p, commandType: CommandType.StoredProcedure);
@@ -135,8 +135,8 @@ namespace Biblioteka_2.Data
         }
         public void AddReader(string connectionString,ReaderModel model)
         {
-            string sql = "INSERT INTO dbo.Czytelnicy(Tytuł,Imię,Nazwisko,Adres,Miasto,Telefon,Email,Opłata,Wartość,Profil) " +
-                "values(@Tytuł,@Imię,@Nazwisko,@Adres,@Miasto,@Telefon,@Email,@Opłata,@Wartość,@Profil)";
+            string sql = "INSERT INTO dbo.Czytelnicy(Tytuł,Imię,Nazwisko,Adres,Miasto,Telefon,Email,Opłata,Wartość,Profil,Active) " +
+                "values(@Tytuł,@Imię,@Nazwisko,@Adres,@Miasto,@Telefon,@Email,@Opłata,@Wartość,@Profil,1)";
 
             using(IDbConnection cnn = new SqlConnection(connectionString))
             {

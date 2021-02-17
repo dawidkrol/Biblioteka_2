@@ -48,7 +48,7 @@
         <Label Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" Padding="5,5,33,5" FontSize="22">Email:</Label>
         <Label Grid.Column="1" Grid.Row="7" HorizontalContentAlignment="Right" Padding="5,5,33,5" FontSize="22" Margin="0,36,0,0" Grid.RowSpan="2">Opłata:</Label>
         <Label Grid.Column="1" Grid.Row="9" HorizontalContentAlignment="Right" Padding="5,5,33,5" FontSize="22" Margin="0,0,0,36" Grid.RowSpan="2">Profil:</Label>
-        <DataGrid Margin="0,0,0,0" Grid.RowSpan="11" ItemsSource="{Binding}" Grid.Row="1">
+        <DataGrid IsReadOnly="True" x:Name="gridd" Margin="0,0,0,0" Grid.RowSpan="11" ItemsSource="{Binding}" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>

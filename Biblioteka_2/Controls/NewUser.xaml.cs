@@ -47,7 +47,7 @@ namespace Biblioteka_2.Controls
                 model.Email = email.Text;
                 model.Miasto = miasto.Text;
                 model.Opłata = string.IsNullOrEmpty(oplata.Text) ? 0 : Convert.ToInt32(oplata.Text);
-                model.Profil = profil.SelectedItem.ToString() ?? null;
+                model.Profil = profil.SelectedItem?.ToString();
                 switch (model.Profil)
                 {
                     case "Student":
@@ -64,9 +64,9 @@ namespace Biblioteka_2.Controls
                         break;
                 }
                 data.AddReader(_module.SqlProfile.connectionString.ToString(), model);
-                buttOn.Background = Brushes.Gray;
+                buttOn.Background = Brushes.LightGray;
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 buttOn.Background = Brushes.DarkRed;
             }
@@ -78,7 +78,14 @@ namespace Biblioteka_2.Controls
         {
             Button button = sender as Button;
             ReaderModel model = button.DataContext as ReaderModel;
-            data.delUser(_module.SqlProfile.connectionString.ToString(), model);
+            try
+            {
+                data.delUser(_module.SqlProfile.connectionString.ToString(), model);
+            }
+            catch
+            {
+                gridd.BorderBrush = Brushes.Red;
+            }
             RefereschData();
         }
 
