@@ -11,7 +11,7 @@ namespace Biblioteka_2
         ISqlProfile SqlProfile { get;}
         public IUserProfile user { get; }
 
-        event PropertyChangedEventHandler LoginProperty;
+        event PropertyChangedEventHandler PropertyChanged;
 
         bool UpdateSqlProfile(string ip, string databaseName, string userName, string password);
         void logout();

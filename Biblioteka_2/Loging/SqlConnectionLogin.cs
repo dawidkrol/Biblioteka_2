@@ -21,7 +21,7 @@ namespace Biblioteka_2
                 try
                 {
                     cnn.Open();
-                    string[] curr = { "KsiążkiAutorzy","Users", "Autorzy", "Czytelnicy", "Wypożyczenia", "GetCzytelnicy","GetCategories", "Kategorie", "Książki"};
+                    SortedSet<string> curr = new SortedSet<string> { "KsiążkiAutorzy","Users", "Autorzy", "Czytelnicy", "Wypożyczenia", "GetCzytelnicy","GetCategories", "Kategorie", "Książki"};
                     DataTable schema = cnn.GetSchema("Tables");
                     StringBuilder s = new StringBuilder();
                     foreach (DataRow row in schema.Rows)

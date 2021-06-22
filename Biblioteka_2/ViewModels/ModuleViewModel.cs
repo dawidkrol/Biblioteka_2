@@ -3,20 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Biblioteka_2.ViewModels
 {
-    class ModuleViewModel : IModule
+    class ModuleViewModel : IModule, INotifyPropertyChanged
     {
         ILogin _loginClass;
         IFileConfig _fileConfig;
         IConnectionLogin _sqlLogin;
         MainWindow _mainWindow;
-        public event PropertyChangedEventHandler LoginProperty;
-        public string configFileName { get; } = "_config.txt";
+        public event PropertyChangedEventHandler PropertyChanged;
+        public const string configFileName = "_config.txt";
         public IUserProfile user { get; private set; }
         public ISqlProfile SqlProfile { get; private set; }
         public bool _login { get; set; } = false;
@@ -29,7 +30,7 @@ namespace Biblioteka_2.ViewModels
             set
             {
                 _login = value;
-                LoginProperty.Invoke(this, new PropertyChangedEventArgs(_login.ToString()));
+                OnPropertyChanged();
             }
         }
 
@@ -49,6 +50,10 @@ namespace Biblioteka_2.ViewModels
             {
                 openReconnect();
             }
+        }
+        protected virtual void OnPropertyChanged([CallerMemberName]string propName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         private void _mainWindow_Closing(object sender, CancelEventArgs e)
